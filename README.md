@@ -4,8 +4,8 @@ Config files to be symlinked to [`$XDG_CONFIG_HOME`](https://specifications.free
 
 Configured tools:
 
-| Name   | Link              |
-+--------|-------------------+
-| Neovim | https://neovim.io |
-| xplr   | https://xplr.dev  |
+| Name     | Link                |
+| -------- | ------------------- |
+| Neovim   | https://neovim.io   |
+| xplr     | https://xplr.dev    |
 
