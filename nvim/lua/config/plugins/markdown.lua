@@ -4,7 +4,7 @@ return {
   init = function()
     -- Cleaner corners for GitHub-style tables
     vim.g.table_mode_corner = "|"
-    vim.g.table_mode_corner_corner = "+"
+    vim.g.table_mode_corner_corner = "|"
     vim.g.table_mode_always_active = 0
   end,
   config = function()
