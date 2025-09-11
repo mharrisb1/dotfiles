@@ -8,9 +8,7 @@ return {
     filters = { dotfiles = false },
     actions = {
       open_file = { quit_on_open = false },
-      system_open = { cmd = nil },
     },
     git = { ignore = false },
-  },
+  }
 }
-
