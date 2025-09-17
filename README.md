@@ -4,8 +4,8 @@ Config files to be symlinked to [`$XDG_CONFIG_HOME`](https://specifications.free
 
 ## Tools
 
-| Name   | Link                         |
-| ------ | ---------------------------- |
-| Neovim | https://neovim.io            |
-| tmux   | https://github.com/tmux/tmux |
-| xplr   | https://xplr.dev             |
+| Name   | Link                     |
+| ------ | ------------------------ |
+| helix  | https://helix-editor.com |
+| xplr   | https://xplr.dev         |
+| zellij | https://zellij.dev       |
