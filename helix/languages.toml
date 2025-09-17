@@ -1,0 +1,77 @@
+###########
+# Bash
+###########
+[[language]]
+name = "bash"
+formatter = { command = "shfmt", args = ["--indent", "2"] }
+auto-format = true
+
+###########
+# C/C++
+###########
+[[language]]
+name = "c"
+auto-format = true
+language-servers = ["clangd"]
+
+[[language]]
+name = "cpp"
+auto-format = false
+language-servers = ["clangd"]
+indent = { tab-width = 4, unit = "    " }
+
+[language-server.clangd]
+command = "clangd"
+args = ["--fallback-style=none"]
+
+############
+# Markdown
+############
+[[language]]
+name = "markdown"
+language-servers = ["marksman", "github-lsp"]
+formatter = { command = "prettier", args = ["--parser", "markdown"] }
+soft-wrap.enable = true
+indent = { tab-width = 4, unit = "    " }
+auto-format = true
+
+[language.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+
+[language-server.github-lsp]
+command = "github-lsp"
+
+############
+# Python
+############
+[[language]]
+name = "python"
+language-servers = ["pyright", "ruff"]
+auto-format = true
+
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
+environment = { "RUFF_TRACE" = "messages" }
+
+[language-server.ruff.config.settings]
+logLevel = "debug"
+
+############
+# TOML
+############
+[[language]]
+name = "toml"
+formatter = { command = "taplo", args = ["fmt", "-"] }
+auto-format = true
+
+############
+# YAML
+############
+[[language]]
+name = "yaml"
+auto-format = true
+formatter = { command = 'prettier', args = ["--parser", "yaml"] }
