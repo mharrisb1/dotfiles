@@ -9,6 +9,12 @@ keybinds {
                 close_on_exit true
             }
         }
+        bind "Ctrl x" {
+            Run "xplr" {
+                floating true
+                close_on_exit true
+            }
+        }
     }
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
