@@ -25,6 +25,41 @@ command = "clangd"
 args = ["--fallback-style=none"]
 
 ############
+# JS/TS
+###########
+[[language]]
+name = "typescript"
+language-servers = ["typescript-language-server"]
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = false
+
+[[language]]
+name = "javascript"
+language-servers = ["typescript-language-server"]
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = false
+
+[language-server.eslint]
+args = ["--stdio"]
+command = "vscode-eslint-language-server"
+
+[language-server.eslint.config]
+format = true
+nodePath = ""
+# onIgnoredFiles = "off"
+# packageManager = "yarn"
+quiet = false
+rulesCustomizations = []
+run = "onType"
+# useESLintClass = false
+validate = "on"
+codeAction = { disableRuleComment = { enable = true, location = "separateLine" }, showDocumentation = { enable = true } }
+codeActionsOnSave = { mode = "all" }
+experimental = { useFlatConfig = true }
+problems = { shortenToSingleLine = true }
+workingDirectory = { mode = "auto" }
+
+############
 # Markdown
 ############
 [[language]]
@@ -67,6 +102,24 @@ logLevel = "debug"
 name = "toml"
 formatter = { command = "taplo", args = ["fmt", "-"] }
 auto-format = true
+
+###########
+# Vue
+###########
+[[language]]
+name = "vue"
+formatter = { command = "prettier", args = ["--parser", "vue"] }
+auto-format = false
+language-servers = ["typescript-language-server", "tailwindcss"]
+
+[[language-server.typescript-language-server.config.plugins]]
+name = "@vue/typescript-plugin"
+location = "/usr/local/lib/node_modules/@vue/language-server"
+languages = ["vue"]
+
+[language-server.tailwindcss]
+command = "tailwindcss-language-server"
+args = ["--stdio"]
 
 ############
 # YAML
