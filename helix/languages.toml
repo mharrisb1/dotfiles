@@ -95,6 +95,19 @@ environment = { "RUFF_TRACE" = "messages" }
 [language-server.ruff.config.settings]
 logLevel = "debug"
 
+###########
+# Rust
+###########
+[[language]]
+name = "rust"
+scope = "source.rust"
+injection-regex = "rust"
+file-types = ["rs"]
+roots = ["Cargo.toml", "Cargo.lock"]
+auto-format = true
+language-servers = ["rust-analyzer"]
+indent = { tab-width = 4, unit = "    " }
+
 ############
 # TOML
 ############
