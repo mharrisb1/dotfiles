@@ -29,21 +29,23 @@ args = ["--fallback-style=none"]
 ###########
 [[language]]
 name = "typescript"
-language-servers = ["typescript-language-server"]
+language-servers = [
+  "typescript-language-server",
+  "vscode-eslint-language-server",
+]
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = false
 
 [[language]]
 name = "javascript"
-language-servers = ["typescript-language-server"]
+language-servers = [
+  "typescript-language-server",
+  "vscode-eslint-language-server",
+]
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = false
 
-[language-server.eslint]
-args = ["--stdio"]
-command = "vscode-eslint-language-server"
-
-[language-server.eslint.config]
+[language-server.vscode-eslint-language-server.config]
 format = true
 nodePath = ""
 # onIgnoredFiles = "off"
@@ -123,11 +125,15 @@ auto-format = true
 name = "vue"
 formatter = { command = "prettier", args = ["--parser", "vue"] }
 auto-format = false
-language-servers = ["typescript-language-server", "tailwindcss"]
+language-servers = [
+  "typescript-language-server",
+  "vscode-eslint-language-server",
+  "tailwindcss",
+]
 
 [[language-server.typescript-language-server.config.plugins]]
 name = "@vue/typescript-plugin"
-location = "/usr/local/lib/node_modules/@vue/language-server"
+location = "/usr/lib/node_modules/@vue/language-server"
 languages = ["vue"]
 
 [language-server.tailwindcss]
