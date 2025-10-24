@@ -17,6 +17,10 @@ keybinds {
             Run "xplr" "." {
                 floating true
                 close_on_exit true
+                width "80%"
+                height "80%"
+                x "10%"
+                y "10%"
             }
         }
     }
@@ -547,6 +551,7 @@ advanced_mouse_actions false
 //
 // post_command_discovery_hook "echo $RESURRECT_COMMAND | sed <your_regex_here>"
 
+show_startup_tips false
 
 web_client {
     font "monospace"
