@@ -86,7 +86,7 @@ command = "github-lsp"
 ############
 [[language]]
 name = "python"
-language-servers = ["pyright", "ruff"]
+language-servers = ["pyright", "ruff", "ty"]
 auto-format = true
 
 [language-server.ruff]
@@ -96,6 +96,10 @@ environment = { "RUFF_TRACE" = "messages" }
 
 [language-server.ruff.config.settings]
 logLevel = "debug"
+
+[language-server.ty]
+command = "ty"
+args = ["server"]
 
 ###########
 # Rust
