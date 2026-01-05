@@ -4,7 +4,7 @@ keybinds {
         // uncomment this and adjust key if using copy_on_select=false
         // bind "Alt c" { Copy; }
         bind "Ctrl l" {
-            Run "lazygit" {
+            Run "/home/workstation/go/bin/lazygit" {
                 floating true
                 close_on_exit true
                 width "80%"
@@ -14,7 +14,7 @@ keybinds {
             }
         }
         bind "Ctrl x" {
-            Run "xplr" "." {
+            Run "/usr/local/bin/xplr" "." {
                 floating true
                 close_on_exit true
                 width "80%"
