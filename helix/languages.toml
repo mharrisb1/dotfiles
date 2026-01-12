@@ -16,9 +16,8 @@ language-servers = ["clangd"]
 
 [[language]]
 name = "cpp"
-auto-format = false
+auto-format = true
 language-servers = ["clangd"]
-indent = { tab-width = 4, unit = "    " }
 
 [language-server.clangd]
 command = "clangd"
