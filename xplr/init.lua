@@ -27,6 +27,8 @@ local function read(path, height)
       return
     end
 
+    -- Expand tabs to spaces
+    line = line:gsub("\t", "        ")
     res = res .. line .. "\n"
     if i == height then
       break
@@ -55,6 +57,24 @@ xplr.fn.custom.preview_pane.render = function(ctx)
       body = stat(n)
     end
   end
+
+  -- Pad body to fill the pane dimensions and clear previous content
+  local width = ctx.layout_size.width
+  local height = ctx.layout_size.height
+  local blank_line = string.rep(" ", width)
+  local lines = {}
+  for line in (body .. "\n"):gmatch("(.-)\n") do
+    if #line > width then
+      line = line:sub(1, width)
+    elseif #line < width then
+      line = line .. string.rep(" ", width - #line)
+    end
+    table.insert(lines, line)
+  end
+  while #lines < height do
+    table.insert(lines, blank_line)
+  end
+  body = table.concat(lines, "\n")
 
   return { CustomParagraph = { ui = { title = title }, body = body } }
 end
