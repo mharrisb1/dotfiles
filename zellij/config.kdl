@@ -13,6 +13,16 @@ keybinds {
                 y "10%"
             }
         }
+        bind "Ctrl w" {
+            Run "lazydocker" {
+                floating true
+                close_on_exit true
+                width "80%"
+                height "80%"
+                x "10%"
+                y "10%"
+            }
+        }
         bind "Ctrl x" {
             Run "xplr" "." {
                 floating true
