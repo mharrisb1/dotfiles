@@ -27,16 +27,6 @@ keybinds {
             Run "xplr" "." {
                 floating true
                 close_on_exit true
-                width "50%"
-                height "50%"
-                x "5%"
-                y "25%"
-            }
-        }
-        bind "Ctrl shift x" {
-            Run "xplr" "." {
-                floating true
-                close_on_exit true
                 width "80%"
                 height "80%"
                 x "10%"
