@@ -1,0 +1,23 @@
+[delta "fleet"]
+    dark = true
+    syntax-theme = base16-ocean.dark
+    file-style = "#4DC4FF" bold
+    file-decoration-style = "#4DC4FF" ul
+    file-added-label = [+]
+    file-modified-label = [~]
+    file-removed-label = [-]
+    file-renamed-label = [>]
+    commit-style = "#C77DBB" bold
+    commit-decoration-style = "#C77DBB" box
+    hunk-header-style = "#8C8C8C" italic
+    hunk-header-decoration-style = "#3D3D3D" box
+    minus-style = syntax "#3B2027"
+    minus-emph-style = syntax "#6B2535"
+    plus-style = syntax "#1C3226"
+    plus-emph-style = syntax "#2B5540"
+    line-numbers-minus-style = "#9B3044"
+    line-numbers-plus-style = "#3C8556"
+    line-numbers-zero-style = "#3D3D3D"
+    zero-style = syntax
+    whitespace-error-style = "#8C3D4D"
+    blame-palette = "#181818" "#1E1E1E" "#242424" "#2A2A2A" "#303030"

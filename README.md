@@ -4,8 +4,9 @@ Config files to be symlinked to [`$XDG_CONFIG_HOME`](https://specifications.free
 
 ## Tools
 
-| Name   | Link                     |
-| ------ | ------------------------ |
-| helix  | https://helix-editor.com |
-| xplr   | https://xplr.dev         |
-| zellij | https://zellij.dev       |
+| Name   | Link                                |
+| ------ | ----------------------------------- |
+| delta  | https://github.com/dandavison/delta |
+| helix  | https://helix-editor.com            |
+| xplr   | https://xplr.dev                    |
+| zellij | https://zellij.dev                  |
