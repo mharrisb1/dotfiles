@@ -23,7 +23,18 @@ language-servers = ["clangd"]
 command = "clangd"
 args = ["--fallback-style=none"]
 
-############
+###########
+# C#
+###########
+[language-server.omnisharp]
+command = "omnisharp"
+args = ["--languageserver"]
+
+[[language]]
+name = "c-sharp"
+language-servers = ["omnisharp"]
+
+###########
 # JS/TS
 ###########
 [[language]]
