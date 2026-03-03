@@ -33,6 +33,16 @@ keybinds {
                 y "10%"
             }
         }
+        bind "Ctrl a" {
+            Run "claude" {
+                floating true
+                close_on_exit true
+                width "80%"
+                height "80%"
+                x "10%"
+                y "10%"
+            }
+        }
     }
     locked {
         bind "Ctrl g" {
