@@ -4,6 +4,7 @@ live_config_reload = true
 [window.padding]
 x = 9
 y = 9
+option_as_alt = "Both"
 
 [font]
 size = 10
@@ -12,3 +13,17 @@ size = 10
 family = "JetBrainsMonoNL Nerd Font Mono"
 style = "Regular"
 
+[[keyboard.bindings]]
+key = "Back"
+mods = "Command"
+chars = "\u0015"
+
+[[keyboard.bindings]]
+key = "Right"
+mods = "Command"
+chars = "\u0005"
+
+[[keyboard.bindings]]
+key = "Left"
+mods = "Command"
+chars = "\u0001"
