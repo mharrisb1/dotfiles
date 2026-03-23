@@ -12,4 +12,3 @@ Config files to be symlinked to [`$XDG_CONFIG_HOME`](https://specifications.free
 | lazygit   | https://github.com/jesseduffield/lazygit |
 | xplr      | https://xplr.dev                         |
 | zellij    | https://zellij.dev                       |
-
