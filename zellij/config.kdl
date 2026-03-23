@@ -33,7 +33,7 @@ keybinds {
                 y "10%"
             }
         }
-        bind "Ctrl a" {
+        bind "Ctrl Shift a" {
             Run "claude" {
                 floating true
                 close_on_exit true
