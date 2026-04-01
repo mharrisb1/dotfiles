@@ -69,6 +69,14 @@ problems = { shortenToSingleLine = true }
 workingDirectory = { mode = "auto" }
 
 ############
+# JSON
+############
+[[language]]
+name = "json"
+formatter = { command = "prettier", args = ["--parser", "json"] }
+auto-format = true
+
+############
 # Markdown
 ############
 [[language]]
@@ -84,6 +92,20 @@ auto-format = true
 '{' = '}'
 '[' = ']'
 '"' = '"'
+
+############
+# NGINX
+############
+[[language]]
+name = "nginx"
+file-types = [
+  { glob = "sites-available/*.conf" },
+  { glob = "sites-enabled/*.conf" },
+  { glob = "nginx.conf" },
+  { glob = "conf.d/*.conf" },
+  { glob = "*.conf.template" },
+  { glob = "conf.template" },
+]
 
 ############
 # Python
