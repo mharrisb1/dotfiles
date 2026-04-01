@@ -6,6 +6,7 @@ version = '1.0.0'
 
 -- setting overrides
 xplr.config.general.show_hidden = true
+os.execute("zellij action set-pane-color --bg '#181818'")
 
 -- hacks
 local function stat(node)
