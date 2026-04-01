@@ -23,17 +23,6 @@ language-servers = ["clangd"]
 command = "clangd"
 args = ["--fallback-style=none"]
 
-###########
-# C#
-###########
-[language-server.omnisharp]
-command = "omnisharp"
-args = ["--languageserver"]
-
-[[language]]
-name = "c-sharp"
-language-servers = ["omnisharp"]
-
 ##############
 # Dockerfile
 ##############
@@ -84,7 +73,7 @@ workingDirectory = { mode = "auto" }
 ############
 [[language]]
 name = "markdown"
-language-servers = ["marksman", "github-lsp"]
+language-servers = ["marksman"]
 formatter = { command = "prettier", args = ["--parser", "markdown"] }
 soft-wrap.enable = true
 indent = { tab-width = 4, unit = "    " }
@@ -95,9 +84,6 @@ auto-format = true
 '{' = '}'
 '[' = ']'
 '"' = '"'
-
-[language-server.github-lsp]
-command = "github-lsp"
 
 ############
 # Python
@@ -139,28 +125,6 @@ indent = { tab-width = 4, unit = "    " }
 name = "toml"
 formatter = { command = "taplo", args = ["fmt", "-"] }
 auto-format = true
-
-###########
-# Vue
-###########
-[[language]]
-name = "vue"
-formatter = { command = "prettier", args = ["--parser", "vue"] }
-auto-format = false
-language-servers = [
-  "typescript-language-server",
-  "vscode-eslint-language-server",
-  "tailwindcss",
-]
-
-[[language-server.typescript-language-server.config.plugins]]
-name = "@vue/typescript-plugin"
-location = "/usr/lib/node_modules/@vue/language-server"
-languages = ["vue"]
-
-[language-server.tailwindcss]
-command = "tailwindcss-language-server"
-args = ["--stdio"]
 
 ############
 # YAML
