@@ -2,7 +2,8 @@
 
 # Ubuntu packages
 sudo apt install -y \
-  clangd
+  clangd \
+  python3-pip
 
 sudo apt-get install -y \
   dotnet-sdk-10.0 \
