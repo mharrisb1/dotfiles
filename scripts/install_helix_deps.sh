@@ -16,7 +16,8 @@ npm i -g \
   @taplo/cli@0.7.0 \
   tombi@0.9.13 \
   yaml-language-server@1.21.0 \
-  @ansible/ansible-language-server@1.2.3
+  @ansible/ansible-language-server@1.2.3 \
+  vscode-langservers-extracted@4.10.0
 
 npm list -g
 
