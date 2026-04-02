@@ -1,2 +1,5 @@
 [lint.rules]
 tables-out-of-order = "off"
+
+[schema]
+strict = false
