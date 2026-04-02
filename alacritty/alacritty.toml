@@ -1,6 +1,10 @@
 [general]
 live_config_reload = true
 
+[terminal.shell]
+program = "/bin/zsh"
+args = ["-c", "neofetch; exec zsh"]
+
 [window.padding]
 x = 9
 y = 9
