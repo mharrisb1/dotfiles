@@ -10,7 +10,7 @@ x = 9
 y = 9
 
 [font]
-size = 9.6
+size = 10
 
 [font.normal]
 family = "JetBrainsMonoNL Nerd Font Mono"
