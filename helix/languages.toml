@@ -23,6 +23,14 @@ language-servers = ["clangd"]
 command = "clangd"
 args = ["--fallback-style=none"]
 
+###########
+# CSS
+###########
+[[language]]
+name = "css"
+formatter = { command = "prettier", args = ["--parser", "css"] }
+auto-format = true
+
 ##############
 # Dockerfile
 ##############
@@ -30,6 +38,14 @@ args = ["--fallback-style=none"]
 name = "dockerfile"
 auto-format = true
 formatter = { command = "dockerfmt" }
+
+###########
+# HTML
+###########
+[[language]]
+name = "html"
+formatter = { command = 'prettier', args = ["--parser", "html"] }
+auto-format = true
 
 ###########
 # JS/TS
