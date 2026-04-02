@@ -3,7 +3,8 @@
 # Ubuntu packages
 sudo apt install -y \
   clangd \
-  python3-pip
+  python3-pip \
+  pipx
 
 sudo apt-get install -y \
   dotnet-sdk-10.0 \
@@ -18,7 +19,8 @@ npm i -g \
   tombi@0.9.13 \
   yaml-language-server@1.21.0 \
   @ansible/ansible-language-server@1.2.3 \
-  vscode-langservers-extracted@4.10.0
+  vscode-langservers-extracted@4.10.0 \
+  typescript-language-server@5.1.3
 
 npm list -g
 
