@@ -65,8 +65,13 @@ language-servers = [
   "typescript-language-server",
   "vscode-eslint-language-server",
 ]
-formatter = { command = 'prettier', args = ["--parser", "typescript"] }
-auto-format = false
+formatter = { command = "npx", args = [
+  "prettier",
+  "--parser",
+  "typescript",
+  "--semi",
+] }
+auto-format = true
 
 [[language]]
 name = "javascript"
@@ -74,8 +79,13 @@ language-servers = [
   "typescript-language-server",
   "vscode-eslint-language-server",
 ]
-formatter = { command = 'prettier', args = ["--parser", "typescript"] }
-auto-format = false
+formatter = { command = "npx", args = [
+  "prettier",
+  "--parser",
+  "typescript",
+  "--semi",
+] }
+auto-format = true
 
 [language-server.vscode-eslint-language-server.config]
 format = true
@@ -88,7 +98,7 @@ run = "onType"
 # useESLintClass = false
 validate = "on"
 codeAction = { disableRuleComment = { enable = true, location = "separateLine" }, showDocumentation = { enable = true } }
-codeActionsOnSave = { mode = "all" }
+codeActionsOnSave = { mode = "all", enable = true }
 experimental = { useFlatConfig = true }
 problems = { shortenToSingleLine = true }
 workingDirectory = { mode = "auto" }
@@ -100,6 +110,13 @@ language-servers = [
   "tailwindcss-ls",
   "vscode-eslint-language-server",
 ]
+formatter = { command = "npx", args = [
+  "prettier",
+  "--parser",
+  "typescript",
+  "--semi",
+] }
+auto-format = true
 
 [[language]]
 name = "tsx"
@@ -108,6 +125,13 @@ language-servers = [
   "tailwindcss-ls",
   "vscode-eslint-language-server",
 ]
+formatter = { command = "npx", args = [
+  "prettier",
+  "--parser",
+  "typescript",
+  "--semi",
+] }
+auto-format = true
 
 ############
 # JSON
