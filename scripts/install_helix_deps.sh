@@ -20,7 +20,8 @@ npm i -g \
   yaml-language-server@1.21.0 \
   @ansible/ansible-language-server@1.2.3 \
   vscode-langservers-extracted@4.10.0 \
-  typescript-language-server@5.1.3
+  typescript-language-server@5.1.3 \
+  @tailwindcss/language-server@0.14.29
 
 npm list -g
 
