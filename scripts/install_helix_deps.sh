@@ -1,11 +1,13 @@
 #!/bin/bash
 
-sudo apt install -y \
+sudo apt update && sudo apt install -y \
   clangd \
   python3-pip \
-  pipx
+  pipx \
+  libxml2-utils \
+  openjdk-21-jdk
 
-sudo apt-get install -y \
+sudo apt-get update && sudo apt-get install -y \
   dotnet-sdk-10.0 \
   dotnet-runtime-10.0
 
