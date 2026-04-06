@@ -7,11 +7,13 @@ scroll-lines = 3
 shell = ["zsh", "-c"]
 line-number = "relative"
 cursorline = true
+continue-comments = true
 auto-format = true
 completion-timeout = 250
 completion-trigger-len = 2
 preview-completion-insert = false
 completion-replace = false
+auto-info = true
 bufferline = "always"
 color-modes = true
 true-color = true
@@ -20,8 +22,14 @@ end-of-line-diagnostics = "hint"
 
 [editor.lsp]
 display-messages = true
+display-progress-messages = true
 auto-signature-help = true
 display-inlay-hints = true
+
+[editor.statusline]
+diagnostics = ["info", "warning", "error"]
+workspace-diagnostics = ["warning", "error"]
+
 
 [editor.indent-guides]
 render = true
