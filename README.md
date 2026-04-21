@@ -14,7 +14,7 @@ Config files to be symlinked to [`$XDG_CONFIG_HOME`](https://specifications.free
 | xplr       | https://xplr.dev                            |
 | zellij     | https://zellij.dev                          |
 
-## Devcontainer
+## Dev Container
 
 Quickly deploy this in a [Dev Container](https://containers.dev):
 
