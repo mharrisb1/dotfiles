@@ -1,7 +1,7 @@
 {
   "name": "Global Dev Env",
   "build": {
-    "dockerfile": "../Dockerfile",
+    "dockerfile": "Dockerfile",
     "context": ".."
   },
   "containerUser": "developer",
