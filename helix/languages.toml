@@ -65,16 +65,13 @@ scope = "source.java"
 file-types = ["java"]
 language-servers = ["jdtls"]
 
-# 2. Define the server (MUST come after [[language]])
 [language-server.jdtls]
-command = "/home/mdharris/jdtls/bin/jdtls"
+command = "jdtls"
 timeout = 60
 args = [
-  # If jdtls is a script, it usually finds 'java' in your PATH.
-  # Since you set Java 21 as default, you don't need --java-executable.
-  "--jvm-arg=-javaagent:/home/mdharris/.local/share/java/lombok.jar",
+  "--jvm-arg=-javaagent:${HOME}/.local/share/java/lombok.jar",
   "-data",
-  "/home/mdharris/.cache/jdtls-workspace",
+  "${HOME}/.cache/jdtls-workspace",
 ]
 
 [language-server.jdtls.config.java.configuration]
@@ -175,14 +172,8 @@ name = "markdown"
 language-servers = ["marksman"]
 formatter = { command = "prettier", args = ["--parser", "markdown"] }
 soft-wrap.enable = true
-indent = { tab-width = 4, unit = "    " }
 auto-format = true
-
-[language.auto-pairs]
-'(' = ')'
-'{' = '}'
-'[' = ']'
-'"' = '"'
+auto-pairs = false
 
 ############
 # NGINX
