@@ -16,6 +16,10 @@ size = 10
 family = "JetBrainsMonoNL Nerd Font Mono"
 style = "Medium"
 
+[colors.primary]
+background = '#181818'
+foreground = '#d1d5da'
+
 [colors.normal]
 red = '#ea4a5a'
 green = '#34d058'
