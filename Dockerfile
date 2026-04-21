@@ -62,6 +62,8 @@ RUN go install github.com/jesseduffield/lazydocker@latest \
     && git clone --depth 1 https://github.com/sayanarijit/xplr.git \
     && cd xplr && cargo build --locked --release --bin xplr && sudo cp target/release/xplr /usr/local/bin/ && cd ..
 
-RUN uv tool install ansible-lint==26.4.0 basedpyright==1.39.0 ruff@0.15.9
+RUN uv tool install ansible-lint==26.4.0 \
+    && uv tool install basedpyright==1.39.0 \
+    && uv tool install ruff@0.15.9
 
 CMD ["zsh"]
