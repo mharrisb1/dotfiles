@@ -173,7 +173,10 @@ language-servers = ["marksman"]
 formatter = { command = "prettier", args = ["--parser", "markdown"] }
 soft-wrap.enable = true
 auto-format = true
-auto-pairs = false
+
+[language.auto-pairs]
+"(" = ")"
+"*" = "*"
 
 ############
 # NGINX
