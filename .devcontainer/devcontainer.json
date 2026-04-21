@@ -1,0 +1,18 @@
+{
+  "name": "Global Dev Env",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": ".."
+  },
+  "containerUser": "developer",
+  "remoteUser": "developer",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/home/developer/workspace/${localWorkspaceFolderBasename},type=bind",
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
+    "source=${localEnv:HOME}/.ssh,target=/home/developer/.ssh,type=bind,readonly"
+  ],
+  "workspaceFolder": "/home/developer/workspace/${localWorkspaceFolderBasename}",
+  "containerEnv": {
+    "XDG_CONFIG_HOME": "/home/developer/.config"
+  }
+}
