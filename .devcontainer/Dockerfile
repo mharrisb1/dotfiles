@@ -27,12 +27,11 @@ USER developer
 WORKDIR /home/developer
 ENV HOME=/home/developer \
     SHELL="/usr/bin/zsh" \
-    PATH="/home/developer/.local/bin:/home/developer/.cargo/bin:/usr/local/go/bin:${PATH}" \
+    PATH="/home/developer/.local/bin:/home/developer/.cargo/bin:/usr/local/go/bin:/home/developer/go/bin:${PATH}" \
     EDITOR="hx" \
     XDG_CONFIG_HOME="/home/developer/.config"
 
-ENV GIT_CONFIG_HOME="$XDG_CONFIG_HOME/delta/delta.gitconfig" \
-    NVM_DIR="/home/developer/.nvm" \
+ENV NVM_DIR="/home/developer/.nvm" \
     HELIX_RUNTIME="/home/developer/helix/runtime"
 
 RUN mkdir -p "$XDG_CONFIG_HOME"
@@ -56,13 +55,15 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
 # --- 3. TOOLS & CLI UTILITIES ---
 RUN go install github.com/jesseduffield/lazydocker@latest \
     && go install github.com/jesseduffield/lazygit@latest \
+    && go install mvdan.cc/sh/v3/cmd/shfmt@latest \
     && cargo install --locked zellij git-delta \
     && git clone --depth 1 https://github.com/helix-editor/helix \
     && cd helix && cargo install --profile opt --path helix-term --locked && cd .. \
     && git clone --depth 1 https://github.com/sayanarijit/xplr.git \
-    && cd xplr && cargo build --locked --release --bin xplr && sudo cp target/release/xplr /usr/local/bin/ && cd ..
-
-RUN uv tool install ansible-lint==26.4.0 \
+    && cd xplr && cargo build --locked --release --bin xplr && sudo cp target/release/xplr /usr/local/bin/ && cd .. \
+    && git clone --depth 1 https://github.com/artempyanykh/marksman.git \
+    && cd marksman && make install && cd .. \
+    && uv tool install ansible-lint==26.4.0 \
     && uv tool install basedpyright==1.39.0 \
     && uv tool install ruff@0.15.9
 
