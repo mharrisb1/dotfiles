@@ -1,5 +1,10 @@
 {
-  "name": "Global Dev Env",
+  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainer.schema.json",
+  "name": "Dev Container",
+  "runArgs": [
+    "--name",
+    "devcontainer"
+  ],
   "build": {
     "dockerfile": "Dockerfile",
     "context": ".."
@@ -14,5 +19,11 @@
   "workspaceFolder": "/home/developer/workspace/${localWorkspaceFolderBasename}",
   "containerEnv": {
     "XDG_CONFIG_HOME": "/home/developer/.config"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "enableNonRootDocker": "true"
+    }
   }
 }
