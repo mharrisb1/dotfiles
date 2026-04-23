@@ -1,4 +1,5 @@
-FROM ubuntu:24.04
+ARG OS_VERSION=24.04
+FROM ubuntu:${OS_VERSION}
 
 # --- 1. SYSTEM & ROOT CONFIG ---
 ENV LANG=en_US.UTF-8 \
@@ -9,17 +10,12 @@ ENV LANG=en_US.UTF-8 \
 RUN apt-get update && apt-get install -y \
     software-properties-common curl git gnupg ca-certificates locales sudo \
     && add-apt-repository ppa:dotnet/backports -y \
-    && install -m 0755 -d /etc/apt/keyrings \
-    && curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc \
-    && chmod a+r /etc/apt/keyrings/docker.asc \
-    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" >/etc/apt/sources.list.d/docker.list \
     && apt-get update && apt-get install -y \
     zsh build-essential clangd libxml2-utils openjdk-21-jdk \
-    dotnet-sdk-9.0 dotnet-runtime-9.0 docker-ce-cli \
+    dotnet-sdk-9.0 dotnet-runtime-9.0 \
     && locale-gen en_US.UTF-8 \
     && useradd -m -s /usr/bin/zsh developer \
     && echo "developer ALL=(ALL) NOPASSWD:ALL" >>/etc/sudoers \
-    && groupadd docker || true && usermod -aG docker developer \
     && rm -rf /var/lib/apt/lists/*
 
 # --- 2. USER ENVIRONMENT ---

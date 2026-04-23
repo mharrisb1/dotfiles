@@ -7,21 +7,21 @@
   ],
   "build": {
     "dockerfile": "Dockerfile",
-    "context": ".."
+    "context": "..",
+    "args": {
+      "OS_VERSION": "${localEnv:OS_VERSION}"
+    }
   },
   "containerUser": "developer",
   "remoteUser": "developer",
+  "updateRemoteUserUID": true,
   "mounts": [
     "source=${localWorkspaceFolder},target=/home/developer/workspace/${localWorkspaceFolderBasename},type=bind",
-    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
     "source=${localEnv:HOME}/.ssh,target=/home/developer/.ssh,type=bind,readonly"
   ],
   "workspaceFolder": "/home/developer/workspace/${localWorkspaceFolderBasename}",
-  "containerEnv": {
-    "XDG_CONFIG_HOME": "/home/developer/.config"
-  },
   "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
       "version": "latest",
       "enableNonRootDocker": "true"
     }
