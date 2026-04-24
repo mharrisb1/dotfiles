@@ -778,6 +778,7 @@ themes {
         orange 225 151 27
     }
     fleet-dark-v2 {
+        background 24 24 24
         text_unselected {
             base 209 209 209      // fg
             background 24 24 24    // bg
@@ -853,6 +854,14 @@ themes {
         frame_selected {
             base 76 169 136        // green
             background 24 24 24    // bg
+            emphasis_0 248 171 23  // yellow
+            emphasis_1 148 226 213 // cyan
+            emphasis_2 173 93 239 // magenta
+            emphasis_3 24 24 24    // black
+        }
+        frame_unselected {
+            base 209 209 209
+            background 24 24 24
             emphasis_0 248 171 23  // yellow
             emphasis_1 148 226 213 // cyan
             emphasis_2 173 93 239 // magenta
