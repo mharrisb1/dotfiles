@@ -190,6 +190,7 @@ file-types = [
   { glob = "conf.d/*.conf" },
   { glob = "*.conf.template" },
   { glob = "conf.template" },
+  { glob = "config.template" },
 ]
 
 ############
