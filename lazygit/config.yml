@@ -3,3 +3,9 @@ git:
     - pager: delta --dark --paging=never
   commit:
     autoWrapCommitMessage: false
+customCommands:
+  - key: "e"
+    context: "files"
+    description: "Edit file"
+    command: "zellij action set-pane-color --bg '#181818' && $EDITOR {{.SelectedFile.Name}}"
+    output: terminal
