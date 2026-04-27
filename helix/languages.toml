@@ -164,6 +164,19 @@ name = "json"
 formatter = { command = "prettier", args = ["--parser", "json"] }
 auto-format = true
 
+[[language]]
+name = "jsonc"
+formatter = { command = "prettier", args = ["--parser", "json"] }
+auto-format = true
+
+[[language-server.vscode-json-language-server.config.json.schemas]]
+fileMatch = ["tsconfig.json", "tsconfig.*.json"]
+url = "https://json.schemastore.org/tsconfig.json"
+
+[[language-server.vscode-json-language-server.config.json.schemas]]
+fileMatch = ["package.json"]
+url = "https://json.schemastore.org/package.json"
+
 ############
 # Markdown
 ############
