@@ -7,12 +7,16 @@ ENV LANG=en_US.UTF-8 \
     LC_ALL=en_US.UTF-8 \
     DEBIAN_FRONTEND=noninteractive
 
+
 RUN apt-get update && apt-get install -y \
     software-properties-common curl git gnupg ca-certificates locales sudo \
+    && curl -fsSL https://hashicorp.com | gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg \
+    && echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://hashicorp.com $(lsb_release -cs) main" >/etc/apt/sources.list.d/hashicorp.list \
     && add-apt-repository ppa:dotnet/backports -y \
     && apt-get update && apt-get install -y \
     zsh build-essential clangd libxml2-utils openjdk-21-jdk \
     dotnet-sdk-9.0 dotnet-runtime-9.0 \
+    terraform terraform-ls \
     && locale-gen en_US.UTF-8 \
     && useradd -m -s /usr/bin/zsh developer \
     && echo "developer ALL=(ALL) NOPASSWD:ALL" >>/etc/sudoers \

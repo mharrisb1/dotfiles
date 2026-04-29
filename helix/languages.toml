@@ -231,6 +231,28 @@ auto-format = true
 language-servers = ["rust-analyzer"]
 indent = { tab-width = 4, unit = "    " }
 
+#####################
+# Terraform/OpenTofu
+#####################
+[[language]]
+name = "hcl"
+auto-format = true
+formatter = { command = "terraform", args = ["fmt", "-"] }
+language-servers = ["terraform-ls"]
+language-id = "terraform"
+
+[[language]]
+name = "tfvars"
+auto-format = true
+formatter = { command = "terraform", args = ["fmt", "-"] }
+language-servers = ["terraform-ls"]
+language-id = "terraform-vars"
+
+[language-server.terraform-ls]
+command = "terraform-ls"
+args = ["serve"]
+
+
 ############
 # TOML
 ############
