@@ -1,29 +1,27 @@
 {
   "$schema": "https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainer.schema.json",
   "name": "Dev Container",
-  "runArgs": [
-    "--name",
-    "devcontainer"
-  ],
-  "build": {
-    "dockerfile": "Dockerfile",
-    "context": "..",
-    "args": {
-      "OS_VERSION": "${localEnv:OS_VERSION}"
-    }
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  "containerEnv": {
+    "ANSIBLE_TAGS": "base"
   },
-  "containerUser": "developer",
-  "remoteUser": "developer",
-  "updateRemoteUserUID": true,
-  "mounts": [
-    "source=${localWorkspaceFolder},target=/home/developer/workspace/${localWorkspaceFolderBasename},type=bind",
-    "source=${localEnv:HOME}/.ssh,target=/home/developer/.ssh,type=bind,readonly"
-  ],
-  "workspaceFolder": "/home/developer/workspace/${localWorkspaceFolderBasename}",
   "features": {
+    "ghcr.io/devcontainers/features/common-utils:1": {
+      "username": "ubuntu"
+    },
     "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
       "version": "latest",
       "enableNonRootDocker": "true"
-    }
-  }
+    },
+    "ghcr.io/devcontainers-contrib/features/ansible:2": {}
+  },
+  "remoteUser": "ubuntu",
+  "containerUser": "ubuntu",
+  "updateRemoteUserUID": true,
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/home/ubuntu/dotfiles,type=bind",
+    "source=${localEnv:HOME}/.ssh,target=/home/ubuntu/.ssh,type=bind,readonly"
+  ],
+  "workspaceFolder": "/home/ubuntu/dotfiles",
+  "postCreateCommand": "ansible-playbook setup.yml --tags ${ANSIBLE_TAGS:-base}"
 }
