@@ -20,5 +20,5 @@
     "source=${localEnv:HOME}/.ssh,target=/home/ubuntu/.ssh,type=bind,readonly"
   ],
   "workspaceFolder": "/home/ubuntu/dotfiles",
-  "postCreateCommand": "ansible-playbook setup.yml --tags ${localEnv:ANSIBLE_TAGS:-base}"
+  "postCreateCommand": "ansible-playbook setup.yml --tags ${localEnv:ANSIBLE_TAGS:base}"
 }
