@@ -12,11 +12,6 @@
     editor: "hx"
 
   tasks:
-    - name: Set .NET version based on OS
-      set_fact:
-        dotnet_version: "{{ '9.0' if ansible_distribution_version == '24.04' else '8.0' }}"
-      tags: [markdown]
-
     - name: System Packages
       become: yes
       tags: [base]
@@ -33,8 +28,6 @@
           - zsh
           - build-essential
           - clangd
-          - tar
-          - gzip
         state: present
         update_cache: yes
 
@@ -158,8 +151,8 @@
       tags: [markdown]
       apt:
         name:
-          - "dotnet-sdk-{{ dotnet_version }}"
-          - "dotnet-runtime-{{ dotnet_version }}"
+          - dotnet-sdk-9.0
+          - dotnet-runtime-9.0
         state: present
         update_cache: yes
 
@@ -173,19 +166,20 @@
         state: present
         update_cache: yes
 
-    - name: Install Rustup
+    - name: Install Rust
       tags: [base, rust]
-      become: yes
-      snap:
-        name: rustup
-        classic: yes
+      shell: curl https://sh.rustup.rs -sSfL | sh -s -- -y --default-toolchain stable --profile minimal
+      args:
+        creates: "{{ user_home }}/.cargo/bin/rustc"
 
     - name: Install Go
       tags: [base, go]
       become: yes
-      snap:
-        name: go
-        classic: yes
+      unarchive:
+        src: https://go.dev/dl/go1.26.2.linux-amd64.tar.gz
+        dest: /usr/local
+        remote_src: yes
+        creates: /usr/local/go
 
     - name: Install uv
       tags: [python, yaml]
@@ -208,7 +202,7 @@
 
     - name: Install Go tools
       tags: [base, bash]
-      shell: "go install {{ item }}@latest"
+      shell: "/usr/local/go/bin/go install {{ item }}@latest"
       loop:
         - github.com/jesseduffield/lazydocker
         - github.com/jesseduffield/lazygit
@@ -218,7 +212,7 @@
 
     - name: Install Cargo tools
       tags: [base]
-      shell: "cargo install --locked {{ item }}"
+      shell: "{{ user_home }}/.cargo/bin/cargo install --locked {{ item }}"
       loop:
         - zellij
         - git-delta
@@ -234,7 +228,7 @@
 
     - name: Install Helix
       tags: [base]
-      shell: "cargo install --profile opt --path helix-term --locked"
+      shell: "{{ user_home }}/.cargo/bin/cargo install --profile opt --path helix-term --locked"
       args:
         chdir: "{{ user_home }}/helix"
         creates: "{{ user_home }}/.cargo/bin/hx"
