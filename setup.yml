@@ -12,6 +12,11 @@
     editor: "hx"
 
   tasks:
+    - name: Set .NET version based on OS
+      set_fact:
+        dotnet_version: "{{ '9.0' if ansible_distribution_version == '24.04' else '8.0' }}"
+      tags: [markdown]
+
     - name: System Packages
       become: yes
       tags: [base]
@@ -28,6 +33,8 @@
           - zsh
           - build-essential
           - clangd
+          - tar
+          - gzip
         state: present
         update_cache: yes
 
@@ -151,8 +158,8 @@
       tags: [markdown]
       apt:
         name:
-          - dotnet-sdk-9.0
-          - dotnet-runtime-9.0
+          - "dotnet-sdk-{{ dotnet_version }}"
+          - "dotnet-runtime-{{ dotnet_version }}"
         state: present
         update_cache: yes
 
@@ -166,20 +173,25 @@
         state: present
         update_cache: yes
 
+    - name: Download Rustup installer
+      tags: [base, rust]
+      get_url:
+        url: https://sh.rustup.rs
+        dest: /tmp/rustup-init.sh
+        mode: "0755"
+
     - name: Install Rust
       tags: [base, rust]
-      shell: curl https://sh.rustup.rs -sSfL | sh -s -- -y --default-toolchain stable --profile minimal
+      shell: /tmp/rustup-init.sh -y --default-toolchain stable --profile minimal
       args:
         creates: "{{ user_home }}/.cargo/bin/rustc"
 
     - name: Install Go
       tags: [base, go]
       become: yes
-      unarchive:
-        src: https://go.dev/dl/go1.26.2.linux-amd64.tar.gz
-        dest: /usr/local
-        remote_src: yes
-        creates: /usr/local/go
+      snap:
+        name: go
+        classic: yes
 
     - name: Install uv
       tags: [python, yaml]
@@ -202,7 +214,7 @@
 
     - name: Install Go tools
       tags: [base, bash]
-      shell: "/usr/local/go/bin/go install {{ item }}@latest"
+      shell: "go install {{ item }}@latest"
       loop:
         - github.com/jesseduffield/lazydocker
         - github.com/jesseduffield/lazygit
