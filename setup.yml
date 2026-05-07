@@ -12,6 +12,11 @@
     editor: "hx"
 
   tasks:
+    - name: Set .NET version based on OS
+      set_fact:
+        dotnet_version: "{{ '9.0' if ansible_distribution_version == '24.04' else '8.0' }}"
+      tags: [markdown]
+
     - name: System Packages
       become: yes
       tags: [base]
@@ -151,8 +156,8 @@
       tags: [markdown]
       apt:
         name:
-          - dotnet-sdk-9.0
-          - dotnet-runtime-9.0
+          - "dotnet-sdk-{{ dotnet_version }}"
+          - "dotnet-runtime-{{ dotnet_version }}"
         state: present
         update_cache: yes
 
@@ -175,11 +180,20 @@
     - name: Install Go
       tags: [base, go]
       become: yes
-      unarchive:
-        src: https://go.dev/dl/go1.26.2.linux-amd64.tar.gz
-        dest: /usr/local
-        remote_src: yes
-        creates: /usr/local/go
+      block:
+        - name: Download Go
+          get_url:
+            url: "https://go.dev/dl/go1.26.2.linux-{{ 'amd64' if ansible_architecture == 'x86_64' else 'arm64' }}.tar.gz"
+            dest: /tmp/go.tar.gz
+          register: go_download
+
+        - name: Extract Go
+          unarchive:
+            src: /tmp/go.tar.gz
+            dest: /usr/local
+            remote_src: yes
+            creates: /usr/local/go
+          when: go_download is successful
 
     - name: Install uv
       tags: [python, yaml]
