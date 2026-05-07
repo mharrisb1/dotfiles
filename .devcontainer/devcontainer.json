@@ -2,9 +2,6 @@
   "$schema": "https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainer.schema.json",
   "name": "Dev Container",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
-  "containerEnv": {
-    "ANSIBLE_TAGS": "base"
-  },
   "features": {
     "ghcr.io/devcontainers/features/common-utils:1": {
       "username": "ubuntu"
@@ -23,5 +20,5 @@
     "source=${localEnv:HOME}/.ssh,target=/home/ubuntu/.ssh,type=bind,readonly"
   ],
   "workspaceFolder": "/home/ubuntu/dotfiles",
-  "postCreateCommand": "ansible-playbook setup.yml --tags ${ANSIBLE_TAGS:-base}"
+  "postCreateCommand": "ansible-playbook setup.yml --tags ${localEnv:ANSIBLE_TAGS:-base}"
 }
