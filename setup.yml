@@ -182,26 +182,9 @@
     - name: Install Go
       tags: [base, go]
       become: yes
-      block:
-        - name: Download Go
-          get_url:
-            url: "https://go.dev/dl/go1.26.2.linux-{{ 'amd64' if ansible_architecture in ['x86_64', 'amd64'] else 'arm64' }}.tar.gz"
-            dest: /tmp/go.tar.gz
-          register: go_download
-
-        - name: Remove old Go installation
-          file:
-            path: /usr/local/go
-            state: absent
-          when: go_download is successful
-
-        - name: Extract Go
-          unarchive:
-            src: /tmp/go.tar.gz
-            dest: /usr/local
-            remote_src: yes
-            creates: /usr/local/go
-          when: go_download is successful
+      snap:
+        name: go
+        classic: yes
 
     - name: Install uv
       tags: [python, yaml]
@@ -224,7 +207,7 @@
 
     - name: Install Go tools
       tags: [base, bash]
-      shell: "/usr/local/go/bin/go install {{ item }}@latest"
+      shell: "go install {{ item }}@latest"
       loop:
         - github.com/jesseduffield/lazydocker
         - github.com/jesseduffield/lazygit
