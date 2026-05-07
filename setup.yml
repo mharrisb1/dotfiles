@@ -2,6 +2,8 @@
 - name: Setup Development Environment
   hosts: localhost
   connection: local
+  environment:
+    NVM_DIR: "{{ nvm_dir }}"
   vars:
     user_home: "{{ lookup('env', 'HOME') }}"
     xdg_config_home: "{{ user_home }}/.config"
@@ -61,12 +63,18 @@
         state: link
         force: yes
       loop:
-        - { src: "nvm", dest: "{{ nvm_dir }}" }
         - { src: "helix", dest: "{{ xdg_config_home }}/helix" }
         - { src: "zellij", dest: "{{ xdg_config_home }}/zellij" }
         - { src: "lazygit", dest: "{{ xdg_config_home }}/lazygit" }
         - { src: "xplr", dest: "{{ xdg_config_home }}/xplr" }
         - { src: "delta", dest: "{{ xdg_config_home }}/delta" }
+
+    - name: Copy NVM directory
+      tags: [base]
+      copy:
+        src: "{{ dotfiles_dir }}/nvm/"
+        dest: "{{ nvm_dir }}/"
+        mode: "0755"
 
     - name: Install Oh My Zsh
       tags: [base]
@@ -87,6 +95,23 @@
         path: "{{ user_home }}/.zshrc"
         regexp: "^export EDITOR="
         line: 'export EDITOR="{{ editor }}"'
+
+    - name: Set HELIX_RUNTIME environment variable
+      tags: [base]
+      lineinfile:
+        path: "{{ user_home }}/.zshrc"
+        regexp: "^export HELIX_RUNTIME="
+        line: 'export HELIX_RUNTIME="{{ user_home }}/helix/runtime"'
+
+    - name: Add NVM initialization to .zshrc
+      tags: [base, js]
+      blockinfile:
+        path: "{{ user_home }}/.zshrc"
+        marker: "# {mark} ANSIBLE MANAGED BLOCK: NVM"
+        block: |
+          export NVM_DIR="{{ nvm_dir }}"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
     - name: HashiCorp GPG Key
       become: yes
