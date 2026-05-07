@@ -173,18 +173,12 @@
         state: present
         update_cache: yes
 
-    - name: Download Rustup installer
-      tags: [base, rust]
-      get_url:
-        url: https://sh.rustup.rs
-        dest: /tmp/rustup-init.sh
-        mode: "0755"
-
-    - name: Install Rust
-      tags: [base, rust]
-      shell: /tmp/rustup-init.sh -y --default-toolchain stable --profile minimal
-      args:
-        creates: "{{ user_home }}/.cargo/bin/rustc"
+    - name: Install Rustup
+      tags: [base]
+      become: yes
+      snap:
+        name: rustup
+        classic: true
 
     - name: Install Go
       tags: [base, go]
