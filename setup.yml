@@ -180,6 +180,12 @@
         name: rustup
         classic: true
 
+    - name: Install Cargo and Rust
+      tags: [base]
+      shell: rustup default stable
+      args:
+        creates: /usr/bin/cargo
+
     - name: Install Go
       tags: [base, go]
       become: yes
@@ -206,19 +212,9 @@
         executable: /bin/bash
         creates: "{{ nvm_dir }}/versions/node"
 
-    - name: Install Go tools
-      tags: [base, bash]
-      shell: "go install {{ item }}@latest"
-      loop:
-        - github.com/jesseduffield/lazydocker
-        - github.com/jesseduffield/lazygit
-        - mvdan.cc/sh/v3/cmd/shfmt
-      args:
-        creates: "{{ user_home }}/go/bin/{{ item | basename }}"
-
     - name: Install Cargo tools
       tags: [base]
-      shell: "{{ user_home }}/.cargo/bin/cargo install --locked {{ item }}"
+      shell: "cargo install --locked {{ item }}"
       loop:
         - zellij
         - git-delta
@@ -234,7 +230,7 @@
 
     - name: Install Helix
       tags: [base]
-      shell: "{{ user_home }}/.cargo/bin/cargo install --profile opt --path helix-term --locked"
+      shell: "cargo install --profile opt --path helix-term --locked"
       args:
         chdir: "{{ user_home }}/helix"
         creates: "{{ user_home }}/.cargo/bin/hx"
@@ -248,7 +244,7 @@
 
     - name: Build xplr
       tags: [base]
-      shell: "{{ user_home }}/.cargo/bin/cargo build --locked --release --bin xplr"
+      shell: "cargo build --locked --release --bin xplr"
       args:
         chdir: "{{ user_home }}/xplr"
         creates: "{{ user_home }}/xplr/target/release/xplr"
@@ -278,7 +274,7 @@
 
     - name: Install uv tools
       tags: [python, yaml]
-      shell: "{{ user_home }}/.local/bin/uv tool install {{ item }}"
+      shell: "uv tool install {{ item }}"
       loop:
         - ansible-lint==26.4.0
         - basedpyright==1.39.0
