@@ -85,8 +85,10 @@ runtimes = [
 [[language]]
 name = "typescript"
 language-servers = [
-  "typescript-language-server",
-  "vscode-eslint-language-server",
+  { name = "typescript-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
 ]
 formatter = { command = "npx", args = [
   "prettier",
@@ -94,13 +96,15 @@ formatter = { command = "npx", args = [
   "typescript",
   "--semi",
 ] }
-auto-format = true
+auto-format = false
 
 [[language]]
 name = "javascript"
 language-servers = [
-  "typescript-language-server",
-  "vscode-eslint-language-server",
+  { name = "typescript-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
 ]
 formatter = { command = "npx", args = [
   "prettier",
@@ -108,7 +112,17 @@ formatter = { command = "npx", args = [
   "typescript",
   "--semi",
 ] }
-auto-format = true
+auto-format = false
+
+[language-server.biome]
+command = "biome"
+args = ["lsp-proxy"]
+
+[language-server.biome.config.biome]
+experimental.rename = true
+
+[language-server.biome.config.biome.inlineConfig]
+linter.rules.suspicious.noConsole = "off"
 
 [language-server.vscode-eslint-language-server.config]
 format = true
@@ -129,9 +143,11 @@ workingDirectory = { mode = "auto" }
 [[language]]
 name = "jsx"
 language-servers = [
-  "typescript-language-server",
+  { name = "typescript-language-server", except-features = [
+    "format",
+  ] },
   "tailwindcss-ls",
-  "vscode-eslint-language-server",
+  "biome",
 ]
 formatter = { command = "npx", args = [
   "prettier",
@@ -139,14 +155,16 @@ formatter = { command = "npx", args = [
   "typescript",
   "--semi",
 ] }
-auto-format = true
+auto-format = false
 
 [[language]]
 name = "tsx"
 language-servers = [
-  "typescript-language-server",
+  { name = "typescript-language-server", except-features = [
+    "format",
+  ] },
   "tailwindcss-ls",
-  "vscode-eslint-language-server",
+  "biome",
 ]
 formatter = { command = "npx", args = [
   "prettier",
@@ -154,7 +172,7 @@ formatter = { command = "npx", args = [
   "typescript",
   "--semi",
 ] }
-auto-format = true
+auto-format = false
 
 ############
 # JSON
