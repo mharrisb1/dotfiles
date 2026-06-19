@@ -1,0 +1,135 @@
+---
+- name: Environment Bootstrap and Dotfiles Setup
+  hosts: localhost
+  connection: local
+  gather_facts: true
+
+  vars:
+    git_username: "Michael Harris"
+    git_useremail: "michael.harrisru@gmail.com"
+
+  tasks:
+    # -------------------------------------------------------------------------
+    # 1. Base Utility & Package Installation
+    # -------------------------------------------------------------------------
+    - name: Install base packages and dev tools on Debian/Ubuntu-based systems
+      become: true
+      ansible.builtin.apt:
+        name:
+          - nnn
+          - vim
+          - tmux
+          - git
+          - build-essential
+          - gdb
+          - valgrind
+          - pkg-config
+          - python3-pip
+          - python3-venv
+          - python3-dev
+          - libssl-dev
+          - htop
+          - psmisc
+          - linux-tools-generic
+          - bpftrace
+        state: present
+        update_cache: true
+      when: ansible_facts['os_family'] == "Debian"
+      tags: packages
+
+    - name: Install base packages and dev tools on RHEL/Fedora-based systems
+      become: true
+      ansible.builtin.dnf:
+        name:
+          - nnn
+          - vim
+          - tmux
+          - git
+          - "@Development Tools"
+          - gdb
+          - valgrind
+          - pkg-config
+          - python3-pip
+          - python3-devel
+          - openssl-devel
+          - htop
+          - psmisc
+          - perf
+          - bpftrace
+        state: present
+      when: ansible_facts['os_family'] == "RedHat"
+      tags: packages
+
+    # -------------------------------------------------------------------------
+    # 2. Performance System Configurations
+    # -------------------------------------------------------------------------
+    - name: Allow non-root users to use perf counters
+      become: true
+      ansible.posix.sysctl:
+        name: kernel.perf_event_paranoid
+        value: '1'
+        sysctl_set: true
+        state: present
+        reload: true
+      tags: packages
+
+    # -------------------------------------------------------------------------
+    # 3. Git Configuration Tasks
+    # -------------------------------------------------------------------------
+    - name: Configure global Git user settings
+      ansible.builtin.git_config:
+        name: "{{ item.name }}"
+        value: "{{ item.value }}"
+        scope: global
+      loop:
+        - { name: 'user.name', value: "{{ git_username }}" }
+        - { name: 'user.email', value: "{{ git_useremail }}" }
+
+    - name: Configure global Git operational preferences
+      ansible.builtin.git_config:
+        name: "{{ item.name }}"
+        value: "{{ item.value }}"
+        scope: global
+      loop:
+        - { name: 'init.defaultBranch', value: 'main' }
+        - { name: 'core.editor', value: 'vim' }
+        - { name: 'pull.rebase', value: 'true' }
+
+    - name: Configure quality-of-life Git aliases
+      ansible.builtin.git_config:
+        name: "alias.{{ item.key }}"
+        value: "{{ item.value }}"
+        scope: global
+      loop:
+        - { key: 'st', value: 'status' }
+        - { key: 'co', value: 'checkout' }
+        - { key: 'br', value: 'branch' }
+        - { key: 'cm', value: 'commit' }
+        - { key: 'lg', value: "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit" }
+
+    # -------------------------------------------------------------------------
+    # 4. Symlink Dotfiles
+    # -------------------------------------------------------------------------
+    - name: Ensure target dotfiles are symlinked to home directory
+      ansible.builtin.file:
+        src: "{{ ansible_facts['user_dir'] }}/dotfiles/{{ item.src }}"
+        dest: "{{ ansible_facts['user_dir'] }}/{{ item.dest }}"
+        state: link
+        force: true
+        follow: false
+      loop:
+        - { src: '.vimrc', dest: '.vimrc' }
+        - { src: '.tmux.conf', dest: '.tmux.conf' }
+
+    # -------------------------------------------------------------------------
+    # 5. Source alias.sh in .bashrc
+    # -------------------------------------------------------------------------
+    - name: Ensure ~/.bashrc sources alias.sh
+      ansible.builtin.blockinfile:
+        path: "{{ ansible_facts['user_dir'] }}/.bashrc"
+        marker: "# {mark} ANSIBLE MANAGED ALIASES"
+        block: |
+          if [ -f "$HOME/dotfiles/alias.sh" ]; then
+              source "$HOME/dotfiles/alias.sh"
+          fi
+
