@@ -2,10 +2,7 @@
 
 Config files to be symlinked to [`$XDG_CONFIG_HOME`](https://specifications.freedesktop.org/basedir-spec/latest/#variables).
 
-> [!TIP]
-> Minimal dotfiles available [here](https://github.com/mharrisb1/dotfiles/tree/minimal)
-
-## Tools
+## Configs
 
 | Name       | Link                                        |
 | ---------- | ------------------------------------------- |
@@ -19,7 +16,7 @@ Config files to be symlinked to [`$XDG_CONFIG_HOME`](https://specifications.free
 
 ## Setup
 
-Bootstrap a fresh Ubuntu install:
+Setup a fresh Ubuntu install:
 
 ```bash
 # 1. Install Ansible
@@ -32,9 +29,6 @@ cd ~/dotfiles
 # 3. Install required Ansible collections
 ansible-galaxy collection install -r ansible/requirements.yml
 
-# 4. Run the playbook (will prompt for sudo password)
-ansible-playbook ansible/setup.yml --ask-become-pass
+# 4. Run the playbook
+ansible-playbook ansible/setup.yml
 ```
-
-> [!NOTE]
-> Docker group membership requires a logout/login (or `newgrp docker`) to take effect.
