@@ -1,0 +1,26 @@
+---
+- name: Setup Development Environment
+  hosts: localhost
+  connection: local
+  gather_facts: true
+  environment:
+    NVM_DIR: "{{ nvm_dir }}"
+  vars_files:
+    - vars/main.yml
+
+  tasks:
+    - import_tasks: tasks/base.yml
+    - import_tasks: tasks/git.yml
+    - import_tasks: tasks/zsh.yml
+    - import_tasks: tasks/rust.yml
+    - import_tasks: tasks/node.yml
+    - import_tasks: tasks/python.yml
+    - import_tasks: tasks/go.yml
+    - import_tasks: tasks/dotnet.yml
+    - import_tasks: tasks/java.yml
+    - import_tasks: tasks/terraform.yml
+    - import_tasks: tasks/helix.yml
+    - import_tasks: tasks/xplr.yml
+    - import_tasks: tasks/marksman.yml
+    - import_tasks: tasks/docker.yml
+    - import_tasks: tasks/perf.yml

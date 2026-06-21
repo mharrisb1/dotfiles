@@ -1,0 +1,18 @@
+---
+- name: Performance tooling packages
+  become: true
+  apt:
+    name:
+      - linux-tools-generic
+      - bpftrace
+    state: present
+    update_cache: true
+
+- name: Allow non-root users to use perf counters
+  become: true
+  ansible.posix.sysctl:
+    name: kernel.perf_event_paranoid
+    value: "1"
+    sysctl_set: true
+    state: present
+    reload: true

@@ -1,0 +1,23 @@
+---
+- name: Install Oh My Zsh
+  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  args:
+    creates: "{{ user_home }}/.oh-my-zsh"
+
+- name: Set ZSH theme
+  lineinfile:
+    path: "{{ user_home }}/.zshrc"
+    regexp: "^ZSH_THEME="
+    line: 'ZSH_THEME="agnoster"'
+
+- name: Configure .zshrc sources and NVM
+  blockinfile:
+    path: "{{ user_home }}/.zshrc"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK: dotfiles"
+    block: |
+      [ -f "$HOME/.env" ] && . "$HOME/.env"
+      [ -f "$HOME/.alias" ] && . "$HOME/.alias"
+
+      export NVM_DIR="{{ nvm_dir }}"
+      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+      [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"

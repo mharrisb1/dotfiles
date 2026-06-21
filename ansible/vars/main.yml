@@ -1,0 +1,7 @@
+---
+user_home: "{{ lookup('env', 'HOME') }}"
+xdg_config_home: "{{ user_home }}/.config"
+nvm_dir: "{{ user_home }}/.nvm"
+dotfiles_dir: "{{ playbook_dir | dirname }}"
+editor: "hx"
+go_version: "1.23.4"

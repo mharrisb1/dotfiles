@@ -1,0 +1,31 @@
+---
+- name: Configure global Git user settings
+  git_config:
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+    scope: global
+  loop:
+    - { name: "user.name", value: "Michael Harris" }
+    - { name: "user.email", value: "michael.harrisru@gmail.com" }
+
+- name: Configure global Git operational preferences
+  git_config:
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+    scope: global
+  loop:
+    - { name: "init.defaultBranch", value: "main" }
+    - { name: "core.editor", value: "hx" }
+    - { name: "pull.rebase", value: "true" }
+
+- name: Configure Git aliases
+  git_config:
+    name: "alias.{{ item.key }}"
+    value: "{{ item.value }}"
+    scope: global
+  loop:
+    - { key: "st", value: "status" }
+    - { key: "co", value: "checkout" }
+    - { key: "br", value: "branch" }
+    - { key: "cm", value: "commit" }
+    - { key: "lg", value: "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit" }

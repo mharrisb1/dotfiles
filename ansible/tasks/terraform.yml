@@ -1,0 +1,23 @@
+---
+- name: HashiCorp GPG key
+  become: true
+  apt_key:
+    url: https://apt.releases.hashicorp.com/gpg
+    state: present
+    keyring: /usr/share/keyrings/hashicorp-archive-keyring.gpg
+
+- name: HashiCorp repository
+  become: true
+  apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+    state: present
+    filename: hashicorp
+
+- name: HashiCorp packages
+  become: true
+  apt:
+    name:
+      - terraform
+      - terraform-ls
+    state: present
+    update_cache: true

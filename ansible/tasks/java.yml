@@ -1,0 +1,9 @@
+---
+- name: JDK packages
+  become: true
+  apt:
+    name:
+      - libxml2-utils
+      - openjdk-21-jdk
+    state: present
+    update_cache: true

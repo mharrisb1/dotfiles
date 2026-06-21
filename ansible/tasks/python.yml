@@ -1,0 +1,12 @@
+---
+- name: Install uv
+  shell: curl -LsSf https://astral.sh/uv/install.sh | sh
+  args:
+    creates: "{{ user_home }}/.local/bin/uv"
+
+- name: Install uv tools
+  shell: "{{ user_home }}/.local/bin/uv tool install {{ item }}"
+  loop:
+    - ansible-lint==26.4.0
+    - basedpyright==1.39.0
+    - ruff@0.15.9

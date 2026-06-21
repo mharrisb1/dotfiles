@@ -1,0 +1,13 @@
+---
+- name: Clone Helix
+  git:
+    repo: https://github.com/helix-editor/helix
+    dest: "{{ user_home }}/helix"
+    depth: 1
+    update: false
+
+- name: Install Helix
+  shell: "{{ user_home }}/.cargo/bin/cargo install --profile opt --path helix-term --locked"
+  args:
+    chdir: "{{ user_home }}/helix"
+    creates: "{{ user_home }}/.cargo/bin/hx"

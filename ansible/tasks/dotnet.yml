@@ -1,0 +1,15 @@
+---
+- name: .NET backports PPA
+  become: true
+  apt_repository:
+    repo: ppa:dotnet/backports
+    state: present
+
+- name: .NET packages
+  become: true
+  apt:
+    name:
+      - dotnet-sdk-10.0
+      - dotnet-runtime-10.0
+    state: present
+    update_cache: true

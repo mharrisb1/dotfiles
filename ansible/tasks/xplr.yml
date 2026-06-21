@@ -1,0 +1,21 @@
+---
+- name: Clone xplr
+  git:
+    repo: https://github.com/sayanarijit/xplr.git
+    dest: "{{ user_home }}/xplr"
+    depth: 1
+    update: false
+
+- name: Build xplr
+  shell: "{{ user_home }}/.cargo/bin/cargo build --locked --release --bin xplr"
+  args:
+    chdir: "{{ user_home }}/xplr"
+    creates: "{{ user_home }}/xplr/target/release/xplr"
+
+- name: Install xplr binary
+  become: true
+  copy:
+    src: "{{ user_home }}/xplr/target/release/xplr"
+    dest: /usr/local/bin/xplr
+    mode: "0755"
+    remote_src: true

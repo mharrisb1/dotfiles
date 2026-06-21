@@ -1,0 +1,21 @@
+---
+- name: Download Go tarball
+  get_url:
+    url: "https://go.dev/dl/go{{ go_version }}.linux-amd64.tar.gz"
+    dest: "/tmp/go{{ go_version }}.linux-amd64.tar.gz"
+    mode: "0644"
+
+- name: Remove existing Go installation
+  become: true
+  file:
+    path: /usr/local/go
+    state: absent
+  when: not ansible_check_mode
+
+- name: Extract Go to /usr/local
+  become: true
+  unarchive:
+    src: "/tmp/go{{ go_version }}.linux-amd64.tar.gz"
+    dest: /usr/local
+    remote_src: true
+    creates: "/usr/local/go/bin/go"
