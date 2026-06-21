@@ -25,6 +25,7 @@
       - libssl-dev
       - htop
       - psmisc
+      - bat
     state: present
     update_cache: true
 
