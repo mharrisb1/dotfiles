@@ -1,4 +1,13 @@
 ---
+- name: .NET packages
+  become: true
+  apt:
+    name:
+      - dotnet-sdk-10.0
+      - dotnet-runtime-10.0
+    state: present
+    update_cache: true
+
 - name: Clone marksman
   git:
     repo: https://github.com/artempyanykh/marksman.git
