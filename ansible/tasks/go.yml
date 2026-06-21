@@ -19,3 +19,13 @@
     dest: /usr/local
     remote_src: true
     creates: "/usr/local/go/bin/go"
+
+- name: Install lazygit via Go
+  command:
+    cmd: "/usr/local/go/bin/go install github.com/jesseduffield/lazygit@latest"
+    creates: "{{ user_home }}/go/bin/lazygit"
+
+- name: Install lazydocker via Go
+  command:
+    cmd: "/usr/local/go/bin/go install github.com/jesseduffield/lazydocker@latest"
+    creates: "{{ user_home }}/go/bin/lazydocker"
