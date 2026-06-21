@@ -16,15 +16,3 @@ Config files to be symlinked to [`$XDG_CONFIG_HOME`](https://specifications.free
 | lazygit    | https://github.com/jesseduffield/lazygit    |
 | xplr       | https://xplr.dev                            |
 | zellij     | https://zellij.dev                          |
-
-## Dev Container
-
-Quickly deploy this in a [Dev Container](https://containers.dev):
-
-> [!NOTE]
-> Must have [Dev Container CLI](https://github.com/devcontainers/cli)
-
-```bash
-devcontainer up --config .devcontainer/devcontainer.json --workspace-folder .
-devcontainer exec --workspace-folder . zsh -c "zellij attach -c dev || zellij"
-```
