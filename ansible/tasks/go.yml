@@ -20,12 +20,13 @@
     remote_src: true
     creates: "/usr/local/go/bin/go"
 
-- name: Install lazygit via Go
+- name: Install Go tools
   command:
-    cmd: "/usr/local/go/bin/go install github.com/jesseduffield/lazygit@latest"
-    creates: "{{ user_home }}/go/bin/lazygit"
-
-- name: Install lazydocker via Go
-  command:
-    cmd: "/usr/local/go/bin/go install github.com/jesseduffield/lazydocker@latest"
-    creates: "{{ user_home }}/go/bin/lazydocker"
+    cmd: "/usr/local/go/bin/go install {{ item.package }}@latest"
+    creates: "{{ user_home }}/go/bin/{{ item.bin }}"
+  loop:
+    - { package: "github.com/jesseduffield/lazygit", bin: "lazygit" }
+    - { package: "github.com/jesseduffield/lazydocker", bin: "lazydocker" }
+    - { package: "github.com/charmbracelet/glow/v2", bin: "glow" }
+  loop_control:
+    label: "{{ item.bin }}"
