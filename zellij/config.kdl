@@ -34,7 +34,7 @@ keybinds {
             }
         }
         bind "Ctrl a" {
-            Run "gemini" {
+            Run "agy" {
                 floating true
                 close_on_exit true
                 width "80%"
