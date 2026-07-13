@@ -7,3 +7,19 @@
       - openjdk-21-jdk
     state: present
     update_cache: true
+
+# Assumes the jdtls launcher is already available on PATH (installed out-of-band;
+# the eclipse.org download and Maven build are both blocked by the corporate
+# firewall / artifact quarantine in this environment).
+
+- name: Ensure ~/.local/share/java exists
+  file:
+    path: "{{ user_home }}/.local/share/java"
+    state: directory
+    mode: "0755"
+
+- name: Download lombok.jar
+  get_url:
+    url: "https://repo.maven.apache.org/maven2/org/projectlombok/lombok/{{ lombok_version }}/lombok-{{ lombok_version }}.jar"
+    dest: "{{ user_home }}/.local/share/java/lombok.jar"
+    mode: "0644"
