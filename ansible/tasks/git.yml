@@ -17,6 +17,7 @@
     - { name: "init.defaultBranch", value: "main" }
     - { name: "core.editor", value: "hx" }
     - { name: "pull.rebase", value: "true" }
+    - { name: "core.excludesfile", value: "{{ xdg_config_home }}/git/ignore" }
 
 - name: Configure Git aliases
   git_config:
