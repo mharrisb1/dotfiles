@@ -3,7 +3,7 @@
 ###########
 [[language]]
 name = "bash"
-formatter = { command = "shfmt", args = ["--indent", "2"] }
+formatter = { command = "shfmt", args = ["-i", "2"] }
 auto-format = true
 
 ###########
@@ -69,14 +69,14 @@ language-servers = ["jdtls"]
 command = "jdtls"
 timeout = 60
 args = [
-  "--jvm-arg=-javaagent:${HOME}/.local/share/java/lombok.jar",
+  "--jvm-arg=-javaagent:/home/ubuntu/.local/share/java/lombok.jar",
   "-data",
-  "${HOME}/.cache/jdtls-workspace",
+  "/home/ubuntu/.cache/jdtls-workspace",
 ]
 
 [language-server.jdtls.config.java.configuration]
 runtimes = [
-  { name = "JavaSE-17", path = "/usr/lib/jvm/java-17-openjdk-amd64", default = true },
+  { name = "JavaSE-21", path = "/usr/lib/jvm/java-21-openjdk-amd64", default = true },
 ]
 
 ###########
