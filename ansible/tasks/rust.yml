@@ -12,3 +12,4 @@
   loop:
     - zellij
     - git-delta
+    - protols
