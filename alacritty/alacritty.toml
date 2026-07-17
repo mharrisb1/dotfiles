@@ -5,6 +5,9 @@ live_config_reload = true
 program = "/bin/zsh"
 args = ["-c", "neofetch; exec zsh"]
 
+[window]
+option_as_alt = "Both"
+
 [window.padding]
 x = 9
 y = 9
