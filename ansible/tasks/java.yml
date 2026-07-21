@@ -8,9 +8,17 @@
     state: present
     update_cache: true
 
-# Assumes the jdtls launcher is already available on PATH (installed out-of-band;
-# the eclipse.org download and Maven build are both blocked by the corporate
+# Assumes the jdtls launcher is installed out-of-band to ~/.local/share/jdtls
+# (the eclipse.org download and Maven build are both blocked by the corporate
 # firewall / artifact quarantine in this environment).
+
+- name: Symlink jdtls onto PATH
+  become: true
+  file:
+    src: "{{ user_home }}/.local/share/jdtls/bin/jdtls"
+    dest: /usr/local/bin/jdtls
+    state: link
+    force: true
 
 - name: Ensure ~/.local/share/java exists
   file:

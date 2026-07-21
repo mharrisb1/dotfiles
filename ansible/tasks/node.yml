@@ -4,8 +4,7 @@
   args:
     creates: "{{ nvm_dir }}/nvm.sh"
 
-- name: Install Node.js LTS via NVM
-  shell: . "{{ nvm_dir }}/nvm.sh" && nvm install --lts
+- name: Install Node.js via NVM
+  shell: . "{{ nvm_dir }}/nvm.sh" && nvm install {{ node_version }}
   args:
     executable: /bin/bash
-    creates: "{{ nvm_dir }}/versions/node"

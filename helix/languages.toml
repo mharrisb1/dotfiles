@@ -64,15 +64,15 @@ name = "java"
 scope = "source.java"
 file-types = ["java"]
 language-servers = ["jdtls"]
+auto-format = true
 
 [language-server.jdtls]
-command = "jdtls"
-timeout = 60
-args = [
-  "--jvm-arg=-javaagent:/home/ubuntu/.local/share/java/lombok.jar",
-  "-data",
-  "/home/ubuntu/.cache/jdtls-workspace",
-]
+command = "jdtls-wrapper"
+args = ["--jvm-arg=-javaagent:/home/ubuntu/.local/share/java/lombok.jar"]
+
+[language-server.jdtls.config]
+java.inlayHints.parameterNames.enabled = "all"
+extendedClientCapabilities.classFileContentsSupport = true
 
 [language-server.jdtls.config.java.configuration]
 runtimes = [
