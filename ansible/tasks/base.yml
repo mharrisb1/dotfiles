@@ -79,3 +79,12 @@
     src: "{{ dotfiles_dir }}/nvm/"
     dest: "{{ nvm_dir }}/"
     mode: "0755"
+
+- name: Symlink /home/ubuntu to current user_home for hardcoded configs
+  become: true
+  file:
+    src: "{{ user_home }}"
+    dest: /home/ubuntu
+    state: link
+    force: true
+  when: user_home != '/home/ubuntu'
