@@ -50,6 +50,7 @@ P = "paste_clipboard_before"
 
 [keys.normal.space]
 space = "file_picker"
+i = ":toggle lsp.display-inlay-hints"
 
 [keys.select]
 y = "yank_to_clipboard"
