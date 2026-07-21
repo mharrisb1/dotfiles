@@ -3,7 +3,7 @@ live_config_reload = true
 
 [terminal.shell]
 program = "/bin/zsh"
-args = ["-c", "neofetch; exec zsh"]
+args = ["-c", "/opt/homebrew/bin/fastfetch; exec zsh"]
 
 [window.padding]
 x = 9
@@ -14,7 +14,7 @@ size = 10
 
 [font.normal]
 family = "JetBrainsMonoNL Nerd Font Mono"
-style = "Medium"
+style = "Regular"
 
 [colors.primary]
 background = '#181818'
