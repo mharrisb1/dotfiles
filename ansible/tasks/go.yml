@@ -28,5 +28,6 @@
     - { package: "github.com/jesseduffield/lazygit", bin: "lazygit" }
     - { package: "github.com/jesseduffield/lazydocker", bin: "lazydocker" }
     - { package: "github.com/charmbracelet/glow/v2", bin: "glow" }
+    - { package: "github.com/quantonganh/jdtls-wrapper", bin: "jdtls-wrapper" }
   loop_control:
     label: "{{ item.bin }}"
