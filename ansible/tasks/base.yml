@@ -26,6 +26,7 @@
       - htop
       - psmisc
       - bat
+      - fzf
     state: present
     update_cache: true
 
