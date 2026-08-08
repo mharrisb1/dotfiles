@@ -200,7 +200,7 @@ url = "https://json.schemastore.org/package.json"
 ############
 [[language]]
 name = "markdown"
-language-servers = ["marksman"]
+language-servers = ["marksman", "codebook"]
 formatter = { command = "prettier", args = ["--parser", "markdown"] }
 soft-wrap.enable = true
 auto-format = true
@@ -208,6 +208,10 @@ auto-format = true
 [language.auto-pairs]
 "(" = ")"
 "*" = "*"
+
+[language-server.codebook]
+command = "codebook-lsp"
+args = ["serve"]
 
 ############
 # NGINX

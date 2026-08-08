@@ -7,6 +7,7 @@ Config files to be symlinked to [`$XDG_CONFIG_HOME`](https://specifications.free
 | Name       | Link                                        |
 | ---------- | ------------------------------------------- |
 | alacritty  | https://github.com/alacritty/alacritty      |
+| codebook   | https://github.com/blopker/codebook         |
 | delta      | https://github.com/dandavison/delta         |
 | helix      | https://helix-editor.com                    |
 | lazydocker | https://github.com/jesseduffield/lazydocker |

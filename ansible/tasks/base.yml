@@ -64,6 +64,7 @@
     - { src: "xplr", dest: "{{ xdg_config_home }}/xplr" }
     - { src: "delta", dest: "{{ xdg_config_home }}/delta" }
     - { src: "git", dest: "{{ xdg_config_home }}/git" }
+    - { src: "codebook", dest: "{{ xdg_config_home }}/codebook" }
 
 - name: Symlink shell rc files into HOME
   file:

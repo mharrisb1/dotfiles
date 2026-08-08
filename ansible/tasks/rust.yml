@@ -14,3 +14,8 @@
     - git-delta
     - protols
     - csvlens
+
+- name: Install codebook-lsp
+  shell: "{{ user_home }}/.cargo/bin/cargo install --git https://github.com/blopker/codebook codebook-lsp"
+  args:
+    creates: "{{ user_home }}/.cargo/bin/codebook-lsp"
