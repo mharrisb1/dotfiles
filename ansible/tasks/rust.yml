@@ -1,10 +1,12 @@
 ---
 - name: Install rustup
+  become: false
   shell: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable --no-modify-path
   args:
     creates: "{{ user_home }}/.cargo/bin/rustup"
 
 - name: Install Cargo tools
+  become: false
   shell: |
     set -e
     test -x "{{ user_home }}/.cargo/bin/{{ item }}" || \
