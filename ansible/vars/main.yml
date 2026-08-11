@@ -8,4 +8,4 @@ node_version: "26.5.0"
 go_version: "1.23.4"
 lombok_version: "1.18.34"
 maven_version: "3.9.9"
-install_antigravity: false
+install_antigravity: true
