@@ -15,7 +15,7 @@ wget -qo- https://raw.githubusercontent.com/mharrisb1/dotfiles/main/install.sh |
 | Name        | Link                                        |
 | ----------- | ------------------------------------------- |
 | alacritty   | https://github.com/alacritty/alacritty      |
-| ansible     | https://www.ansible.com                     |
+| ansible     | https://ansible.com                         |
 | antigravity | https://antigravity.google                  |
 | bat         | https://github.com/sharkdp/bat              |
 | bpftrace    | https://github.com/bpftrace/bpftrace        |
@@ -23,11 +23,11 @@ wget -qo- https://raw.githubusercontent.com/mharrisb1/dotfiles/main/install.sh |
 | codebook    | https://github.com/blopker/codebook         |
 | csvlens     | https://github.com/YS-L/csvlens             |
 | delta       | https://github.com/dandavison/delta         |
-| docker      | https://www.docker.com                      |
+| docker      | https://docker.com                          |
 | dotnet      | https://dotnet.microsoft.com                |
 | fastfetch   | https://github.com/fastfetch-cli/fastfetch  |
 | fzf         | https://github.com/junegunn/fzf             |
-| gdb         | https://www.sourceware.org/gdb/             |
+| gdb         | https://sourceware.org/gdb/                 |
 | git         | https://git-scm.com                         |
 | glow        | https://github.com/charmbracelet/glow       |
 | go          | https://go.dev                              |
@@ -42,10 +42,10 @@ wget -qo- https://raw.githubusercontent.com/mharrisb1/dotfiles/main/install.sh |
 | nvm         | https://github.com/nvm-sh/nvm               |
 | oh-my-zsh   | https://ohmyz.sh                            |
 | perf        | https://perf.wiki.kernel.org                |
-| python      | https://www.python.org                      |
-| rust        | https://www.rust-lang.org                   |
+| python      | https://python.org                          |
+| rust        | https://rust-lang.org                       |
 | uv          | https://github.com/astral-sh/uv             |
 | valgrind    | https://valgrind.org                        |
 | xplr        | https://xplr.dev                            |
 | zellij      | https://zellij.dev                          |
-| zsh         | https://www.zsh.org                         |
+| zsh         | https://zsh.org                             |
