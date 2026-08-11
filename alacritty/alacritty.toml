@@ -3,7 +3,7 @@ live_config_reload = true
 
 [terminal.shell]
 program = "/bin/zsh"
-args = ["-c", "fastfetch; exec zsh"]
+args = ["-c", "fastfetch 2>/dev/null || neofetch 2>/dev/null; exec zsh"]
 
 [window]
 option_as_alt = "Both"
