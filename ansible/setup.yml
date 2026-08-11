@@ -10,7 +10,7 @@
 
   tasks:
     - import_tasks: tasks/base.yml
-    - import_tasks: tasks/fastfetch.yml
+    - import_tasks: tasks/alacritty.yml
     - import_tasks: tasks/git.yml
     - import_tasks: tasks/zsh.yml
     - import_tasks: tasks/rust.yml
@@ -23,4 +23,3 @@
     - import_tasks: tasks/marksman.yml
     - import_tasks: tasks/perf.yml
     - import_tasks: tasks/antigravity.yml
-
