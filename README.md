@@ -23,5 +23,5 @@ Setup a fresh Ubuntu install:
 sudo apt update && sudo apt install -y ansible git
 git clone https://github.com/mharrisb1/dotfiles ~/dotfiles
 cd ~/dotfiles
-ansible-playbook ansible/setup.yml
+ansible-playbook setup/main.yml
 ```
