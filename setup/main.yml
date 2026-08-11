@@ -11,6 +11,7 @@
   tasks:
     - import_tasks: tasks/base.yml
     - import_tasks: tasks/alacritty.yml
+    - import_tasks: tasks/docker.yml
     - import_tasks: tasks/git.yml
     - import_tasks: tasks/zsh.yml
     - import_tasks: tasks/rust.yml

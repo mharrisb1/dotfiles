@@ -28,6 +28,9 @@
       - psmisc
       - bat
       - fzf
+      - bc
+      - expect
+      - python3-debian
     state: present
     update_cache: true
 

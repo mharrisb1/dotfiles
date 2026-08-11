@@ -29,5 +29,10 @@
     - { package: "github.com/jesseduffield/lazydocker", bin: "lazydocker" }
     - { package: "github.com/charmbracelet/glow/v2", bin: "glow" }
     - { package: "github.com/quantonganh/jdtls-wrapper", bin: "jdtls-wrapper" }
+    - {
+        package: "github.com/docker/docker-language-server/cmd/docker-language-server",
+        bin: "docker-language-server",
+      }
+    - { package: "github.com/reteps/dockerfmt", bin: "dockerfmt" }
   loop_control:
     label: "{{ item.bin }}"
