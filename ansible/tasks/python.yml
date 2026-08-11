@@ -9,4 +9,5 @@
   loop:
     - ansible-lint==26.4.0
     - basedpyright==1.39.0
+    - cmake-language-server==0.1.11
     - ruff@0.15.9

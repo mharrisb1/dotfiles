@@ -14,6 +14,7 @@
       - zsh
       - build-essential
       - clangd
+      - cmake
       - tar
       - gzip
       - gdb
