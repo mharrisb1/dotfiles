@@ -1,0 +1,32 @@
+---
+- name: Install fastfetch (Ubuntu 25 and later)
+  become: true
+  ansible.builtin.apt:
+    name: fastfetch
+    state: present
+    update_cache: yes
+  when:
+    - ansible_facts['distribution'] == 'Ubuntu'
+    - ansible_facts['distribution_major_version'] | int >= 25
+
+- name: Install neofetch (Ubuntu 24 and older)
+  become: true
+  ansible.builtin.apt:
+    name: neofetch
+    state: present
+    update_cache: yes
+  when:
+    - ansible_facts['distribution'] == 'Ubuntu'
+    - ansible_facts['distribution_major_version'] | int <= 24
+
+- name: Create system-wide alias mapping fastfetch to neofetch (Ubuntu 24 and older)
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/profile.d/fastfetch_alias.sh
+    content: |
+      # Managed by Ansible - alias fastfetch to neofetch
+      alias fastfetch='neofetch'
+    mode: '0644'
+  when:
+    - ansible_facts['distribution'] == 'Ubuntu'
+    - ansible_facts['distribution_major_version'] | int <= 24

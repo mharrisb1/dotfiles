@@ -3,7 +3,7 @@ live_config_reload = true
 
 [terminal.shell]
 program = "/bin/zsh"
-args = ["-c", "/opt/homebrew/bin/fastfetch; exec zsh"]
+args = ["-c", "fastfetch; exec zsh"]
 
 [window]
 option_as_alt = "Both"
@@ -40,3 +40,8 @@ blue = '#79b8ff'
 magenta = '#b392f0'
 cyan = '#56d4dd'
 white = '#fafbfc'
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Control"
+action = "Paste"
