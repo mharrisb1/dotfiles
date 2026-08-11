@@ -5,8 +5,8 @@
     value: "{{ item.value }}"
     scope: global
   loop:
-    - { name: "user.name", value: "Michael Harris" }
-    - { name: "user.email", value: "michael.harrisru@gmail.com" }
+    - { name: "user.name", value: "{{ git_user_name }}" }
+    - { name: "user.email", value: "{{ git_user_email }}" }
 
 - name: Configure global Git operational preferences
   git_config:

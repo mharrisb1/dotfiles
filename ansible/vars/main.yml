@@ -9,3 +9,5 @@ go_version: "1.23.4"
 lombok_version: "1.18.34"
 maven_version: "3.9.9"
 install_antigravity: true
+git_user_name: "Michael Harris"
+git_user_email: "michael.harrisru@gmail.com"
