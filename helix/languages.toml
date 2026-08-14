@@ -48,6 +48,14 @@ auto-format = true
 formatter = { command = "dockerfmt" }
 
 ###########
+# Go
+###########
+[[language]]
+name = "go"
+auto-format = true
+formatter = { command = "goimports" }
+
+###########
 # HTML
 ###########
 [[language]]

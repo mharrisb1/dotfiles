@@ -25,6 +25,11 @@
     cmd: "/usr/local/go/bin/go install {{ item.package }}@latest"
     creates: "{{ user_home }}/go/bin/{{ item.bin }}"
   loop:
+    - { package: "golang.org/x/tools/gopls", bin: "gopls" }
+    - { package: "github.com/go-delve/delve/cmd/dlv", bin: "dlv" }
+    - { package: "golang.org/x/tools/cmd/goimports", bin: "goimports" }
+    - { package: "github.com/nametake/golangci-lint-langserver", bin: "golangci-lint-langserver" }
+    - { package: "github.com/golangci/golangci-lint/v2/cmd/golangci-lint", bin: "golangci-lint" }
     - { package: "github.com/jesseduffield/lazygit", bin: "lazygit" }
     - { package: "github.com/jesseduffield/lazydocker", bin: "lazydocker" }
     - { package: "github.com/charmbracelet/glow/v2", bin: "glow" }
