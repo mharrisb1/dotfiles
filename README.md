@@ -25,6 +25,7 @@ wget -qo- https://raw.githubusercontent.com/mharrisb1/dotfiles/main/install.sh |
 | delta       | https://github.com/dandavison/delta         |
 | docker      | https://docker.com                          |
 | dotnet      | https://dotnet.microsoft.com                |
+| dua-cli     | https://github.com/Byron/dua-cli            |
 | fastfetch   | https://github.com/fastfetch-cli/fastfetch  |
 | fzf         | https://github.com/junegunn/fzf             |
 | gdb         | https://sourceware.org/gdb/                 |

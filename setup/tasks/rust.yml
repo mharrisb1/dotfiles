@@ -18,6 +18,7 @@
     - csvlens
     - neocmakelsp
     - kdlfmt
+    - dua-cli
 
 - name: Install codebook-lsp
   shell: "{{ user_home }}/.cargo/bin/cargo install --git https://github.com/blopker/codebook codebook-lsp"
