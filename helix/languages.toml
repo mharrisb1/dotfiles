@@ -93,44 +93,18 @@ runtimes = [
 [[language]]
 name = "typescript"
 language-servers = [
-  { name = "typescript-language-server", except-features = [
-    "format",
-  ] },
-  "biome",
+  "typescript-language-server",
+  "vscode-eslint-language-server",
 ]
-formatter = { command = "npx", args = [
-  "prettier",
-  "--parser",
-  "typescript",
-  "--semi",
-] }
 auto-format = true
 
 [[language]]
 name = "javascript"
 language-servers = [
-  { name = "typescript-language-server", except-features = [
-    "format",
-  ] },
-  "biome",
+  "typescript-language-server", # optional
+  "vscode-eslint-language-server",
 ]
-formatter = { command = "npx", args = [
-  "prettier",
-  "--parser",
-  "typescript",
-  "--semi",
-] }
 auto-format = true
-
-[language-server.biome]
-command = "biome"
-args = ["lsp-proxy"]
-
-[language-server.biome.config.biome]
-experimental.rename = true
-
-[language-server.biome.config.biome.inlineConfig]
-linter.rules.suspicious.noConsole = "off"
 
 [language-server.vscode-eslint-language-server.config]
 format = true
@@ -151,35 +125,19 @@ workingDirectory = { mode = "auto" }
 [[language]]
 name = "jsx"
 language-servers = [
-  { name = "typescript-language-server", except-features = [
-    "format",
-  ] },
+  "typescript-language-server",
   "tailwindcss-ls",
-  "biome",
+  "vscode-eslint-language-server",
 ]
-formatter = { command = "npx", args = [
-  "prettier",
-  "--parser",
-  "typescript",
-  "--semi",
-] }
 auto-format = true
 
 [[language]]
 name = "tsx"
 language-servers = [
-  { name = "typescript-language-server", except-features = [
-    "format",
-  ] },
+  "typescript-language-server",
   "tailwindcss-ls",
-  "biome",
+  "vscode-eslint-language-server",
 ]
-formatter = { command = "npx", args = [
-  "prettier",
-  "--parser",
-  "typescript",
-  "--semi",
-] }
 auto-format = true
 
 ############
