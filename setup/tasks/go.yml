@@ -45,6 +45,6 @@
         bin: "docker-language-server",
       }
     - { package: "github.com/reteps/dockerfmt", bin: "dockerfmt" }
-    - { package: "github.com/mharrisb1/markings", bin: "markings" }
+
   loop_control:
     label: "{{ item.bin }}"
