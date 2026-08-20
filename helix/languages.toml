@@ -96,6 +96,7 @@ language-servers = [
   "typescript-language-server",
   "vscode-eslint-language-server",
 ]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
 auto-format = true
 
 [[language]]
@@ -104,6 +105,7 @@ language-servers = [
   "typescript-language-server", # optional
   "vscode-eslint-language-server",
 ]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
 auto-format = true
 
 [language-server.vscode-eslint-language-server.config]
@@ -129,6 +131,7 @@ language-servers = [
   "tailwindcss-ls",
   "vscode-eslint-language-server",
 ]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
 auto-format = true
 
 [[language]]
@@ -138,6 +141,7 @@ language-servers = [
   "tailwindcss-ls",
   "vscode-eslint-language-server",
 ]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
 auto-format = true
 
 ############
