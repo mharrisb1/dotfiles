@@ -15,6 +15,7 @@
       - build-essential
       - clangd
       - cmake
+      - ninja-build
       - tar
       - gzip
       - gdb
