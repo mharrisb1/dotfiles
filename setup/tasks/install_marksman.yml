@@ -11,12 +11,12 @@
 - name: Clone marksman
   git:
     repo: https://github.com/artempyanykh/marksman.git
-    dest: "{{ user_home }}/marksman"
+    dest: "{{ user.home }}/marksman"
     depth: 1
     update: false
 
 - name: Install marksman
   shell: make install
   args:
-    chdir: "{{ user_home }}/marksman"
-    creates: "{{ user_home }}/.local/bin/marksman"
+    chdir: "{{ user.home }}/marksman"
+    creates: "{{ user.home }}/.local/bin/marksman"

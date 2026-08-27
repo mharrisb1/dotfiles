@@ -4,23 +4,110 @@
   connection: local
   gather_facts: true
   environment:
-    NVM_DIR: "{{ nvm_dir }}"
+    NVM_DIR: "{{ paths.nvm }}"
   vars_files:
     - vars/main.yml
 
   tasks:
-    - import_tasks: tasks/base.yml
-    - import_tasks: tasks/alacritty.yml
-    - import_tasks: tasks/docker.yml
-    - import_tasks: tasks/git.yml
-    - import_tasks: tasks/zsh.yml
-    - import_tasks: tasks/rust.yml
-    - import_tasks: tasks/node.yml
-    - import_tasks: tasks/python.yml
-    - import_tasks: tasks/go.yml
-    - import_tasks: tasks/java.yml
-    - import_tasks: tasks/helix.yml
-    - import_tasks: tasks/xplr.yml
-    - import_tasks: tasks/marksman.yml
-    - import_tasks: tasks/perf.yml
-    - import_tasks: tasks/antigravity.yml
+    - name: Symlink /home/ubuntu to current user.home for hardcoded configs
+      become: true
+      file:
+        src: "{{ user.home }}"
+        dest: /home/ubuntu
+        state: link
+        force: true
+      when: user.home != '/home/ubuntu'
+
+    - name: Create required directories
+      file:
+        path: "{{ item }}"
+        state: directory
+        mode: "0755"
+      loop:
+        - "{{ paths.xdg_config_home }}"
+        - "{{ paths.nvm }}"
+
+    - name: Symlink configuration directories
+      file:
+        src: "{{ paths.dotfiles }}/{{ item.src }}"
+        dest: "{{ item.dest }}"
+        state: link
+        force: true
+      loop:
+        - { src: "alacritty", dest: "{{ paths.xdg_config_home }}/alacritty" }
+        - { src: "helix", dest: "{{ paths.xdg_config_home }}/helix" }
+        - { src: "zellij", dest: "{{ paths.xdg_config_home }}/zellij" }
+        - { src: "lazygit", dest: "{{ paths.xdg_config_home }}/lazygit" }
+        - { src: "xplr", dest: "{{ paths.xdg_config_home }}/xplr" }
+        - { src: "delta", dest: "{{ paths.xdg_config_home }}/delta" }
+        - { src: "git", dest: "{{ paths.xdg_config_home }}/git" }
+        - { src: "codebook", dest: "{{ paths.xdg_config_home }}/codebook" }
+
+    - name: Symlink shell rc files into HOME
+      file:
+        src: "{{ paths.dotfiles }}/{{ item }}"
+        dest: "{{ user.home }}/{{ item }}"
+        state: link
+        force: true
+      loop:
+        - .env
+        - .alias
+
+    - name: Install apt packages from software list
+      become: true
+      apt:
+        name: "{{ item.apt | dict2items | selectattr('value', 'equalto', true) | map(attribute='key') | list }}"
+        state: present
+      loop: "{{ software }}"
+      when:
+        - item.enable | default(false) | bool
+        - item.apt is defined
+        - (item.apt | dict2items | selectattr('value', 'equalto', true) | list | length) > 0
+      loop_control:
+        label: "{{ item.name }}"
+
+    - name: Run complex installation scripts
+      ansible.builtin.include_tasks: "{{ item.task_file }}"
+      loop: "{{ software }}"
+      when:
+        - item.enable | default(false) | bool
+        - item.task_file is defined
+      loop_control:
+        label: "{{ item.name }}"
+
+    - name: Install cargo packages from software list
+      become: false
+      shell: |
+        set -e
+        test -x "{{ user.home }}/.cargo/bin/{{ item.1.name }}" || \
+        {% if item.1.git is defined %}
+        "{{ user.home }}/.cargo/bin/cargo" install --git {{ item.1.git }} {{ item.1.name }}
+        {% else %}
+        "{{ user.home }}/.cargo/bin/cargo" install --locked {{ item.1.name }}
+        {% endif %}
+      loop: "{{ software | subelements('cargo', skip_missing=True) }}"
+      when:
+        - item.0.enable | default(false) | bool
+        - item.1.enable | default(false) | bool
+      loop_control:
+        label: "{{ item.1.name }}"
+
+    - name: Install uv tools from software list
+      shell: "{{ user.home }}/.local/bin/uv tool install --force '{{ item.1.name }}'"
+      loop: "{{ software | subelements('uv_tool', skip_missing=True) }}"
+      when:
+        - item.0.enable | default(false) | bool
+        - item.1.enable | default(false) | bool
+      loop_control:
+        label: "{{ item.1.name }}"
+
+    - name: Install go_mod packages from software list
+      command:
+        cmd: "/usr/local/go/bin/go install {{ item.1.mod }}@latest"
+        creates: "{{ user.home }}/go/bin/{{ item.1.name }}"
+      loop: "{{ software | subelements('go_mod', skip_missing=True) }}"
+      when:
+        - item.0.enable | default(false) | bool
+        - item.1.enable | default(false) | bool
+      loop_control:
+        label: "{{ item.1.name }}"

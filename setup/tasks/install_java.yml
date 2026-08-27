@@ -1,0 +1,53 @@
+---
+- name: JDK packages
+  become: true
+  apt:
+    name:
+      - libxml2-utils
+      - openjdk-21-jdk
+    state: present
+    update_cache: true
+
+# NOTE: Assumes the jdtls launcher is installed out-of-band to ~/.local/share/jdtls
+- name: Symlink jdtls onto PATH
+  become: true
+  file:
+    src: "{{ user.home }}/.local/share/jdtls/bin/jdtls"
+    dest: /usr/local/bin/jdtls
+    state: link
+    force: true
+
+- name: Ensure ~/.local/share/java exists
+  file:
+    path: "{{ user.home }}/.local/share/java"
+    state: directory
+    mode: "0755"
+
+- name: Download lombok.jar
+  get_url:
+    url: "https://repo.maven.apache.org/maven2/org/projectlombok/lombok/{{ item.config.lombok_version }}/lombok-{{ item.config.lombok_version }}.jar"
+    dest: "{{ user.home }}/.local/share/java/lombok.jar"
+    mode: "0644"
+
+- name: Download Maven tarball
+  get_url:
+    url: "https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/{{ item.config.maven_version }}/apache-maven-{{ item.config.maven_version }}-bin.tar.gz"
+    dest: "/tmp/apache-maven-{{ item.config.maven_version }}-bin.tar.gz"
+    mode: "0644"
+
+- name: Extract Maven to /usr/local
+  become: true
+  unarchive:
+    src: "/tmp/apache-maven-{{ item.config.maven_version }}-bin.tar.gz"
+    dest: /usr/local
+    remote_src: true
+    mode: "a+rX"
+    creates: "/usr/local/apache-maven-{{ item.config.maven_version }}/bin/mvn"
+
+- name: Symlink mvn onto PATH
+  become: true
+  file:
+    src: "/usr/local/apache-maven-{{ item.config.maven_version }}/bin/mvn"
+    dest: /usr/local/bin/mvn
+    state: link
+    force: true

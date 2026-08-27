@@ -21,7 +21,7 @@
     uris: "https://download.docker.com/linux/ubuntu"
     suites: ["{{ ansible_facts['distribution_release'] }}"]
     components: [stable]
-    architectures: ["{{ 'amd64' if ansible_facts['architecture'] == 'x86_64' else 'arm64' if ansible_facts['architecture'] == 'aarch64' else ansible_facts['architecture'] }}"]
+    architectures: ["amd64"]
     signed_by: /etc/apt/keyrings/docker.asc
     state: present
 
