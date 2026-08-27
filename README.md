@@ -62,7 +62,6 @@ You can effortlessly toggle tools or add new ones by editing the `software` arra
 | java        | https://openjdk.org                         |
 | lazydocker  | https://github.com/jesseduffield/lazydocker |
 | lazygit     | https://github.com/jesseduffield/lazygit    |
-| markings    | https://github.com/mharrisb1/markings       |
 | maven       | https://maven.apache.org                    |
 | neofetch    | https://github.com/dylanaraps/neofetch      |
 | node        | https://nodejs.org                          |
