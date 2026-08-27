@@ -10,6 +10,31 @@ Setup a fresh Ubuntu install:
 wget -qo- https://raw.githubusercontent.com/mharrisb1/dotfiles/main/install.sh | bash
 ```
 
+## Configuration
+
+All software, user settings, and paths are dynamically configured in `setup/vars/main.yml`. 
+
+You can effortlessly toggle tools or add new ones by editing the `software` array. The setup natively handles package installations across `apt`, `cargo`, `go install` (`go_mod`), and `uv tool`:
+
+```yaml
+  - name: "example_tool"
+    enable: true
+    task_file: "tasks/custom_task.yml"  # Optional: run a complex Ansible task file
+    apt:
+      example-pkg: true
+    cargo:
+      - name: example-crate
+        enable: true
+        git: "https://github.com/optional/git-repo" # Optional: install via git
+    go_mod:
+      - name: example-binary
+        enable: true
+        mod: "github.com/user/repo"
+    uv_tool:
+      - name: "example-python-tool==1.0.0"
+        enable: true
+```
+
 ## Tools
 
 | Name        | Link                                        |
