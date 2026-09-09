@@ -12,66 +12,65 @@ wget -qo- https://raw.githubusercontent.com/mharrisb1/dotfiles/main/install.sh |
 
 ## Configuration
 
-All software, user settings, and paths are dynamically configured in `setup/vars/main.yml`. 
+All software, user settings, and paths are dynamically configured in `setup/vars/main.yml`.
 
 You can effortlessly toggle tools or add new ones by editing the `software` array. The setup natively handles package installations across `apt`, `cargo`, `go install` (`go_mod`), and `uv tool`:
 
 ```yaml
-  - name: "example_tool"
-    enable: true
-    task_file: "tasks/custom_task.yml"  # Optional: run a complex Ansible task file
-    apt:
-      example-pkg: true
-    cargo:
-      - name: example-crate
-        enable: true
-        git: "https://github.com/optional/git-repo" # Optional: install via git
-    go_mod:
-      - name: example-binary
-        enable: true
-        mod: "github.com/user/repo"
-    uv_tool:
-      - name: "example-python-tool==1.0.0"
-        enable: true
+- name: "example_tool"
+  enable: true
+  task_file: "tasks/custom_task.yml" # Optional: run a complex Ansible task file
+  apt:
+    example-pkg: true
+  cargo:
+    - name: example-crate
+      enable: true
+      git: "https://github.com/optional/git-repo" # Optional: install via git
+  go_mod:
+    - name: example-binary
+      enable: true
+      mod: "github.com/user/repo"
+  uv_tool:
+    - name: "example-python-tool==1.0.0"
+      enable: true
 ```
 
 ## Tools
 
-| Name        | Link                                        |
-| ----------- | ------------------------------------------- |
-| alacritty   | https://github.com/alacritty/alacritty      |
-| ansible     | https://ansible.com                         |
-| antigravity | https://antigravity.google                  |
-| bat         | https://github.com/sharkdp/bat              |
-| bpftrace    | https://github.com/bpftrace/bpftrace        |
-| cmake       | https://cmake.org                           |
-| codebook    | https://github.com/blopker/codebook         |
-| csvlens     | https://github.com/YS-L/csvlens             |
-| delta       | https://github.com/dandavison/delta         |
-| docker      | https://docker.com                          |
-| dotnet      | https://dotnet.microsoft.com                |
-| dua-cli     | https://github.com/Byron/dua-cli            |
-| fastfetch   | https://github.com/fastfetch-cli/fastfetch  |
-| fzf         | https://github.com/junegunn/fzf             |
-| gdb         | https://sourceware.org/gdb/                 |
-| git         | https://git-scm.com                         |
-| glow        | https://github.com/charmbracelet/glow       |
-| go          | https://go.dev                              |
-| helix       | https://helix-editor.com                    |
-| htop        | https://htop.dev                            |
-| java        | https://openjdk.org                         |
-| lazydocker  | https://github.com/jesseduffield/lazydocker |
-| lazygit     | https://github.com/jesseduffield/lazygit    |
-| maven       | https://maven.apache.org                    |
-| neofetch    | https://github.com/dylanaraps/neofetch      |
-| node        | https://nodejs.org                          |
-| nvm         | https://github.com/nvm-sh/nvm               |
-| oh-my-zsh   | https://ohmyz.sh                            |
-| perf        | https://perf.wiki.kernel.org                |
-| python      | https://python.org                          |
-| rust        | https://rust-lang.org                       |
-| uv          | https://github.com/astral-sh/uv             |
-| valgrind    | https://valgrind.org                        |
-| xplr        | https://xplr.dev                            |
-| zellij      | https://zellij.dev                          |
-| zsh         | https://zsh.org                             |
+| Name       | Link                                        |
+| ---------- | ------------------------------------------- |
+| alacritty  | https://github.com/alacritty/alacritty      |
+| ansible    | https://ansible.com                         |
+| bat        | https://github.com/sharkdp/bat              |
+| bpftrace   | https://github.com/bpftrace/bpftrace        |
+| cmake      | https://cmake.org                           |
+| codebook   | https://github.com/blopker/codebook         |
+| csvlens    | https://github.com/YS-L/csvlens             |
+| delta      | https://github.com/dandavison/delta         |
+| docker     | https://docker.com                          |
+| dotnet     | https://dotnet.microsoft.com                |
+| dua-cli    | https://github.com/Byron/dua-cli            |
+| fastfetch  | https://github.com/fastfetch-cli/fastfetch  |
+| fzf        | https://github.com/junegunn/fzf             |
+| gdb        | https://sourceware.org/gdb/                 |
+| git        | https://git-scm.com                         |
+| glow       | https://github.com/charmbracelet/glow       |
+| go         | https://go.dev                              |
+| helix      | https://helix-editor.com                    |
+| htop       | https://htop.dev                            |
+| java       | https://openjdk.org                         |
+| lazydocker | https://github.com/jesseduffield/lazydocker |
+| lazygit    | https://github.com/jesseduffield/lazygit    |
+| maven      | https://maven.apache.org                    |
+| neofetch   | https://github.com/dylanaraps/neofetch      |
+| node       | https://nodejs.org                          |
+| nvm        | https://github.com/nvm-sh/nvm               |
+| oh-my-zsh  | https://ohmyz.sh                            |
+| perf       | https://perf.wiki.kernel.org                |
+| python     | https://python.org                          |
+| rust       | https://rust-lang.org                       |
+| uv         | https://github.com/astral-sh/uv             |
+| valgrind   | https://valgrind.org                        |
+| xplr       | https://xplr.dev                            |
+| zellij     | https://zellij.dev                          |
+| zsh        | https://zsh.org                             |
