@@ -1,3 +1,0 @@
-alias z="zellij"
-alias cdx='cd $(xplr)'
-alias bat="batcat"
