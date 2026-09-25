@@ -1,9 +1,0 @@
----
-- name: Install rustup
-  become: false
-  shell: |
-    set -o pipefail
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable --no-modify-path
-  args:
-    executable: /bin/bash
-    creates: "{{ user.home }}/.cargo/bin/rustup"
