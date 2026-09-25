@@ -18,6 +18,8 @@ sudo dnf install -y $(cat .packages)
 
 ## Uninstall Packages
 
+### Debian/Ubuntu
+
 ```bash
 sudo apt remove -y $(cat .packages)
 ```
