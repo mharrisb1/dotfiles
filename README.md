@@ -1,6 +1,6 @@
 # dotfiles
 
-Resources for minimal setup for new Linux machines (primarily Ubuntu, RHEL, and Debian). I often work across machines where I am limited to what I can install.
+Resources for minimal setup for new Linux machines (primarily Ubuntu, RHEL, and Debian). I often work across machines where I am limited to what I can install so this is a pretty simple setup that I can rely on.
 
 ## Install Packages
 
