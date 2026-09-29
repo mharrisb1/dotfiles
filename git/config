@@ -1,0 +1,37 @@
+[user]
+  name = Michael Harris
+  email = michael.harrisru@gmail.com
+
+[core]
+  autocrlf = false
+
+[init]
+  defaultBranch = main
+
+[push]
+  default = simple
+
+[pull]
+  rebase = true
+
+[color]
+  ui = auto
+
+[color "status"]
+  added = green bold
+  changed = yellow bold
+  untracked = red bold
+
+[alias]
+  st = status -sb
+  lg = log --oneline --graph --decorate
+
+[diff]
+  tool = nvimdiff
+
+[difftool]
+  prompt = false
+
+[difftool "nvimdiff"]
+  cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+
