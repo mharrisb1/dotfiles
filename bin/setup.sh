@@ -13,7 +13,7 @@ done
 
 # Symlink config directories
 mkdir -p "$XDG_CONFIG_HOME"
-for dir in "nvim" "tmux"; do
+for dir in "nvim" "tmux" "git"; do
     if [ -d "$dir" ]; then
 	ln -sf "$(pwd)/$dir" "$XDG_CONFIG_HOME"
     fi
