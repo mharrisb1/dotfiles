@@ -2,6 +2,12 @@
 vim.o.number = true
 vim.o.relativenumber = true
 
+-- lines
+vim.o.wrap = false
+vim.o.scrolloff = 9
+vim.o.sidescrolloff = 6
+vim.o.cursorline = true
+
 -- gutters
 vim.o.signcolumn = "yes"
 
@@ -17,12 +23,21 @@ vim.o.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
+-- tabs override
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "python" },
   callback = function()
     vim.opt_local.tabstop = 4
     vim.opt_local.shiftwidth = 4
     vim.opt_local.softtabstop = 4
+  end,
+})
+
+-- resize splits automatically
+vim.api.nvim_create_autocmd("VimResized", {
+  group = augroup,
+  callback = function()
+    vim.cmd("tabdo wincmd =")
   end,
 })
 
