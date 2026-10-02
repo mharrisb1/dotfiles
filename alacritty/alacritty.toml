@@ -12,6 +12,9 @@ option_as_alt = "Both"
 x = 9
 y = 9
 
+[terminal]
+osc52 = "CopyPaste"
+
 [font]
 size = 10
 
