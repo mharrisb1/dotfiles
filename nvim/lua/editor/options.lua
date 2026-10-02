@@ -25,13 +25,6 @@ vim.opt.cursorline = true
 -- gutters
 vim.opt.signcolumn = "yes"
 
--- statusline
-vim.opt.cmdheight = 1
-
--- tabline
-vim.opt.showtabline = 1
-vim.opt.tabline = ""
-
 -- undo/redo
 vim.opt.undofile = true
 

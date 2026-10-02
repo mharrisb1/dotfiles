@@ -180,27 +180,6 @@ hl("LspReferenceRead",      { bg = p.bg_light })
 hl("LspReferenceWrite",     { bg = p.bg_light })
 
 -------------------------------------------------------------------------------
--- Plugin Support: Telescope
--------------------------------------------------------------------------------
-hl("TelescopeNormal",       { fg = p.fg, bg = p.bg_dark })
-hl("TelescopeBorder",       { fg = p.bg_subtle, bg = p.bg_dark })
-hl("TelescopePromptBorder", { fg = p.bg_subtle, bg = p.bg_dark })
-hl("TelescopeResultsBorder",{ fg = p.bg_subtle, bg = p.bg_dark })
-hl("TelescopePreviewBorder",{ fg = p.bg_subtle, bg = p.bg_dark })
-hl("TelescopeSelection",    { bg = p.bg_subtle })
-hl("TelescopeMatching",     { fg = p.blue, bold = true })
-
--------------------------------------------------------------------------------
--- Plugin Support: NvimTree / Neo-tree
--------------------------------------------------------------------------------
-hl("NvimTreeNormal",        { fg = p.fg, bg = p.bg_dark })
-hl("NvimTreeNormalNC",      { fg = p.fg, bg = p.bg_dark })
-hl("NvimTreeRootFolder",    { fg = p.blue, bold = true })
-hl("NvimTreeGitDirty",      { fg = p.yellow })
-hl("NvimTreeGitNew",        { fg = p.green })
-hl("NvimTreeGitDeleted",    { fg = p.red })
-
--------------------------------------------------------------------------------
 -- Plugin Support: Gitsigns / Git Diff
 -------------------------------------------------------------------------------
 hl("GitSignsAdd",           { fg = p.green })
