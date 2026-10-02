@@ -3,18 +3,18 @@ if vim.fn.exists("syntax_on") then
   vim.cmd("syntax reset")
 end
 
-vim.g.colors_name = "fleet"
+vim.g.colors_name = "fleet_darker"
 vim.o.termguicolors = true
 
 -------------------------------------------------------------------------------
--- Fleet Palette
+-- Fleet Darker Palette
 -------------------------------------------------------------------------------
 local p = {
-  bg            = "#181818", -- Primary dark background
-  bg_dark       = "#121212", -- Darker background (float/sidebars)
-  bg_light      = "#222222", -- Slightly lighter background (selections, visual)
-  bg_highlight  = "#2a2a2a", -- Cursorline, current item highlight
-  bg_subtle     = "#333333", -- Subtle UI borders, splitters
+  bg            = "#0d0d0d", -- Deepened primary dark background
+  bg_dark       = "#070707", -- Deepened background (float/sidebars/Telescope)
+  bg_light      = "#181818", -- Lighter background (selections, visual)
+  bg_highlight  = "#202020", -- Cursorline, current item highlight
+  bg_subtle     = "#282828", -- Subtle UI borders, splitters
 
   fg            = "#c1c8cd", -- Primary foreground
   fg_dim        = "#81888d", -- Comments, muted UI elements
@@ -29,9 +29,9 @@ local p = {
   yellow        = "#e5c07b", -- Attributes, fields, warnings
   pink          = "#e070a0", -- Special tags, regex, regex escapes
 
-  diff_add      = "#1c3224",
-  diff_change   = "#2c2a1e",
-  diff_delete   = "#381f21",
+  diff_add      = "#14261a", -- Adjusted for darker bg
+  diff_change   = "#212015",
+  diff_delete   = "#2a1516",
 }
 
 -------------------------------------------------------------------------------
@@ -64,9 +64,9 @@ hl("PmenuSbar",     { bg = p.bg_dark })
 hl("PmenuThumb",    { bg = p.fg_dark })
 hl("StatusLine",    { fg = p.fg, bg = p.bg_dark })
 hl("StatusLineNC",  { fg = p.fg_dim, bg = p.bg_dark })
-hl("Search",        { fg = p.bg, bg = p.yellow })
-hl("IncSearch",     { fg = p.bg, bg = p.orange })
-hl("CurSearch",     { fg = p.bg, bg = p.orange })
+hl("Search",        { fg = p.bg_dark, bg = p.yellow })
+hl("IncSearch",     { fg = p.bg_dark, bg = p.orange })
+hl("CurSearch",     { fg = p.bg_dark, bg = p.orange })
 hl("Visual",        { bg = p.bg_subtle })
 hl("VisualNOS",     { bg = p.bg_subtle })
 hl("MatchParen",    { fg = p.cyan, bold = true, underline = true })
@@ -114,53 +114,61 @@ hl("Underlined",    { underline = true })
 hl("Bold",          { bold = true })
 hl("Italic",        { italic = true })
 hl("Error",         { fg = p.red, bold = true })
-hl("Todo",          { fg = p.bg, bg = p.yellow, bold = true })
+hl("Todo",          { fg = p.bg_dark, bg = p.yellow, bold = true })
 
 -------------------------------------------------------------------------------
--- TreeSitter
+-- TreeSitter & Semantic Tokens
 -------------------------------------------------------------------------------
-hl("@comment",              { link = "Comment" })
-hl("@variable",             { fg = p.fg })
-hl("@variable.builtin",     { fg = p.red, italic = true })
-hl("@variable.parameter",   { fg = p.orange })
-hl("@variable.member",      { fg = p.yellow })
-hl("@constant",             { link = "Constant" })
-hl("@constant.builtin",     { fg = p.orange, bold = true })
-hl("@string",               { link = "String" })
-hl("@string.regex",         { fg = p.pink })
-hl("@string.escape",        { fg = p.pink })
-hl("@character",            { link = "Character" })
-hl("@number",               { link = "Number" })
-hl("@boolean",              { link = "Boolean" })
-hl("@number.float",         { link = "Float" })
-hl("@function",             { link = "Function" })
-hl("@function.builtin",     { fg = p.blue, italic = true })
-hl("@function.macro",       { fg = p.pink })
-hl("@parameter",            { fg = p.orange })
-hl("@method",               { fg = p.blue })
-hl("@field",                { fg = p.yellow })
-hl("@property",             { fg = p.yellow })
-hl("@constructor",          { fg = p.cyan })
-hl("@conditional",          { link = "Conditional" })
-hl("@repeat",               { link = "Repeat" })
-hl("@label",                { link = "Label" })
-hl("@operator",             { link = "Operator" })
-hl("@keyword",              { link = "Keyword" })
-hl("@keyword.function",     { fg = p.purple, bold = true })
-hl("@keyword.operator",     { fg = p.purple })
-hl("@exception",            { link = "Exception" })
-hl("@type",                 { link = "Type" })
-hl("@type.builtin",         { fg = p.cyan, italic = true })
-hl("@type.qualifier",       { fg = p.purple })
-hl("@structure",            { link = "Structure" })
-hl("@include",              { link = "Include" })
-hl("@namespace",            { fg = p.cyan })
-hl("@punct.delimiter",      { fg = p.fg_dim })
-hl("@punct.bracket",        { fg = p.fg_dim })
-hl("@punct.special",        { fg = p.pink })
-hl("@tag",                  { fg = p.purple })
-hl("@tag.attribute",        { fg = p.yellow })
-hl("@tag.delimiter",        { fg = p.fg_dark })
+hl("@comment",             { link = "Comment" })
+hl("@variable",            { fg = p.fg })
+hl("@variable.builtin",    { fg = p.red, italic = true })
+hl("@variable.parameter",  { fg = p.orange })
+hl("@variable.member",     { fg = p.yellow })
+hl("@constant",            { link = "Constant" })
+hl("@constant.builtin",    { fg = p.orange, bold = true })
+hl("@string",              { link = "String" })
+hl("@string.regex",        { fg = p.pink })
+hl("@string.escape",       { fg = p.pink })
+hl("@character",           { link = "Character" })
+hl("@number",              { link = "Number" })
+hl("@boolean",             { link = "Boolean" })
+hl("@number.float",        { link = "Float" })
+hl("@function",            { link = "Function" })
+hl("@function.builtin",    { fg = p.blue, italic = true })
+hl("@function.macro",      { fg = p.pink })
+hl("@parameter",           { fg = p.orange })
+hl("@method",              { fg = p.blue })
+hl("@field",               { fg = p.yellow })
+hl("@property",            { fg = p.yellow })
+hl("@constructor",         { fg = p.cyan })
+hl("@conditional",         { link = "Conditional" })
+hl("@repeat",              { link = "Repeat" })
+hl("@label",               { link = "Label" })
+hl("@operator",            { link = "Operator" })
+hl("@keyword",             { link = "Keyword" })
+hl("@keyword.function",    { fg = p.purple, bold = true })
+hl("@keyword.operator",    { fg = p.purple })
+hl("@exception",           { link = "Exception" })
+hl("@type",                { link = "Type" })
+hl("@type.builtin",        { fg = p.cyan, italic = true })
+hl("@type.qualifier",      { fg = p.purple })
+hl("@structure",           { link = "Structure" })
+hl("@include",             { link = "Include" })
+hl("@namespace",           { fg = p.cyan })
+hl("@punct.delimiter",     { fg = p.fg_dim })
+hl("@punct.bracket",       { fg = p.fg_dim })
+hl("@punct.special",       { fg = p.pink })
+hl("@tag",                 { fg = p.purple })
+hl("@tag.attribute",       { fg = p.yellow })
+hl("@tag.delimiter",       { fg = p.fg_dark })
+
+-- LSP Semantic Tokens Support
+hl("@lsp.type.class",      { link = "@type" })
+hl("@lsp.type.function",   { link = "@function" })
+hl("@lsp.type.method",     { link = "@method" })
+hl("@lsp.type.property",   { link = "@property" })
+hl("@lsp.type.variable",   { link = "@variable" })
+hl("@lsp.type.parameter",  { link = "@parameter" })
 
 -------------------------------------------------------------------------------
 -- LSP & Diagnostics
@@ -180,8 +188,9 @@ hl("LspReferenceRead",      { bg = p.bg_light })
 hl("LspReferenceWrite",     { bg = p.bg_light })
 
 -------------------------------------------------------------------------------
--- Plugin Support: Gitsigns / Git Diff
+-- Plugin Support (Indent Blankline, Gitsigns, Telescope, NvimTree)
 -------------------------------------------------------------------------------
+-- Gitsigns
 hl("GitSignsAdd",           { fg = p.green })
 hl("GitSignsChange",        { fg = p.yellow })
 hl("GitSignsDelete",        { fg = p.red })
@@ -190,4 +199,20 @@ hl("DiffAdd",               { bg = p.diff_add })
 hl("DiffChange",            { bg = p.diff_change })
 hl("DiffDelete",            { bg = p.diff_delete })
 hl("DiffText",              { bg = p.bg_subtle, bold = true })
+
+-- Indent Blankline (ibl)
+hl("IblIndent",             { fg = p.bg_subtle })
+hl("IblScope",              { fg = p.fg_dark })
+
+-- Telescope
+hl("TelescopeBorder",       { fg = p.bg_subtle, bg = p.bg_dark })
+hl("TelescopeNormal",       { fg = p.fg, bg = p.bg_dark })
+hl("TelescopeSelection",    { bg = p.bg_light, bold = true })
+hl("TelescopeMatching",     { fg = p.yellow, bold = true })
+hl("TelescopePromptPrefix", { fg = p.purple })
+
+-- NvimTree
+hl("NvimTreeNormal",        { fg = p.fg_dim, bg = p.bg_dark })
+hl("NvimTreeFolderIcon",    { fg = p.blue })
+hl("NvimTreeRootFolder",    { fg = p.purple, bold = true })
 
