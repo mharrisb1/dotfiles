@@ -10,7 +10,7 @@ vim.o.termguicolors = true
 -- Fleet Darker Palette
 -------------------------------------------------------------------------------
 local p = {
-  bg            = "#0d0d0d", -- Deepened primary dark background
+  bg            = "#181818", -- Deepened primary dark background
   bg_dark       = "#070707", -- Deepened background (float/sidebars/Telescope)
   bg_light      = "#181818", -- Lighter background (selections, visual)
   bg_highlight  = "#202020", -- Cursorline, current item highlight
