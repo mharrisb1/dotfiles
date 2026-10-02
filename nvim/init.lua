@@ -1,3 +1,3 @@
-require("config.colorscheme")
-require("config.options")
+require("editor")
+require("theme")
 

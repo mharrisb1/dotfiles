@@ -12,29 +12,35 @@ vim.g.clipboard = {
 }
 vim.opt.clipboard = "unnamedplus"
 
-
 -- line no
-vim.o.number = true
-vim.o.relativenumber = true
+vim.opt.number = true
+vim.opt.relativenumber = true
 
 -- lines
-vim.o.wrap = false
-vim.o.scrolloff = 9
-vim.o.sidescrolloff = 6
-vim.o.cursorline = true
+vim.opt.wrap = false
+vim.opt.scrolloff = 9
+vim.opt.sidescrolloff = 6
+vim.opt.cursorline = true
 
 -- gutters
-vim.o.signcolumn = "yes"
+vim.opt.signcolumn = "yes"
+
+-- statusline
+vim.opt.cmdheight = 1
+
+-- tabline
+vim.opt.showtabline = 1
+vim.opt.tabline = ""
 
 -- undo/redo
-vim.o.undofile = true
+vim.opt.undofile = true
 
 -- automatic reload
-vim.o.autoread = true
+vim.opt.autoread = true
 
 -- tabs
-vim.o.tabstop = 2
-vim.o.softtabstop = 2
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
