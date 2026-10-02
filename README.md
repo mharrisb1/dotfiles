@@ -1,32 +1,22 @@
 # dotfiles
 
-Resources for minimal setup for new Linux machines (primarily Ubuntu, RHEL, and Debian). I often work across machines where I am limited to what I can install so this is a pretty simple setup that I can rely on.
+Resources for minimal setup for new Linux machines (primarily Ubuntu, RHEL, and Debian).
 
-## Install Packages
+## Package Management
 
 ### Debian/Ubuntu
 
 ```bash
 sudo apt install -y $(cat .packages)
-```
-
-### RHEL
-
-```bash
-sudo dnf install -y $(cat .packages)
-```
-
-## Uninstall Packages
-
-### Debian/Ubuntu
-
-```bash
+# or
 sudo apt remove -y $(cat .packages)
 ```
 
 ### RHEL
 
 ```bash
+sudo dnf install -y $(cat .packages)
+# or
 sudo dnf remove -y $(cat .packages)
 ```
 

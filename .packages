@@ -1,1 +1,2 @@
-git neovim tmux
+git neovim tmux clang clang-format clang-tidy
+
