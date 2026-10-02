@@ -81,4 +81,5 @@ vim.api.nvim_create_autocmd("DiagnosticChanged", {
 
 vim.opt.statusline = "%!v:lua._statusline()"
 vim.opt.cmdheight = 1
+vim.opt.laststatus = 3
 
