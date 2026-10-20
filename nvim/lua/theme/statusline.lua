@@ -44,20 +44,7 @@ function _G._statusline()
   local branch = vim.b.git_branch and "%#StlGit# " .. vim.b.git_branch .. " %*" or ""
   local path = vim.b.rel_path or "%f"
 
-  local diag = ""
-  local diagnostics = vim.diagnostic.get(0)
-  local counts = { 0, 0, 0, 0 }
-  for _, d in ipairs(diagnostics) do
-    counts[d.severity] = counts[d.severity] + 1
-  end
-  
-  local labels = { " ", " ", " ", " " }
-  local hls = { "DiagnosticError", "DiagnosticWarn", "DiagnosticInfo", "DiagnosticHint" }
-  for i = 1, 4 do
-    diag = diag .. "%#" .. hls[i] .. "#" .. labels[i] .. counts[i] .. "%* "
-  end
-
-  return "%#" .. mode_hl .. "# " .. mode .. " %*" .. branch .. " " .. path .. "%=" .. diag .. vim.bo.filetype .. " %l:%c"
+  return "%#" .. mode_hl .. "# " .. mode .. " %*" .. branch .. " " .. path .. "%=" .. vim.bo.filetype .. " %l:%c"
 end
 
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -82,4 +69,3 @@ vim.api.nvim_create_autocmd("DiagnosticChanged", {
 vim.opt.statusline = "%!v:lua._statusline()"
 vim.opt.cmdheight = 1
 vim.opt.laststatus = 3
-
