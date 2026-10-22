@@ -38,6 +38,9 @@ vim.opt.signcolumn = "yes"
 -- undo/redo
 vim.opt.undofile = true
 
+-- swap files
+vim.opt.swapfile = false
+
 -- automatic reload
 vim.opt.autoread = true
 
@@ -64,4 +67,3 @@ vim.api.nvim_create_autocmd("VimResized", {
     vim.cmd("tabdo wincmd =")
   end,
 })
-
