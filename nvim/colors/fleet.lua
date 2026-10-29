@@ -215,4 +215,3 @@ hl("TelescopePromptPrefix", { fg = p.purple })
 hl("NvimTreeNormal",        { fg = p.fg_dim, bg = p.bg_dark })
 hl("NvimTreeFolderIcon",    { fg = p.blue })
 hl("NvimTreeRootFolder",    { fg = p.purple, bold = true })
-

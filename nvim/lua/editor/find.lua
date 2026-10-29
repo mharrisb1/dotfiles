@@ -9,11 +9,3 @@ end
 for _, pattern in ipairs(ignore.files) do
   vim.opt.wildignore:append(pattern)
 end
-
-vim.opt.wildignore = {
-  "*/__pycache__/*",
-  "*/.git/*",
-  "*/build/*",
-  "*.swp",
-  "*.zip"
-}

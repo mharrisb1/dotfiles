@@ -47,4 +47,3 @@ end
 
 vim.opt.tabline = "%!v:lua._tabline()"
 vim.opt.showtabline = 2
-
