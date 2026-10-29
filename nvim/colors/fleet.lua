@@ -3,11 +3,11 @@ if vim.fn.exists("syntax_on") then
   vim.cmd("syntax reset")
 end
 
-vim.g.colors_name = "fleet_darker"
+vim.g.colors_name = "fleet"
 vim.o.termguicolors = true
 
 -------------------------------------------------------------------------------
--- Fleet Darker Palette
+-- Fleet Palette
 -------------------------------------------------------------------------------
 local p = {
   bg            = "#181818", -- Deepened primary dark background
@@ -171,47 +171,9 @@ hl("@lsp.type.variable",   { link = "@variable" })
 hl("@lsp.type.parameter",  { link = "@parameter" })
 
 -------------------------------------------------------------------------------
--- LSP & Diagnostics
+-- Diff
 -------------------------------------------------------------------------------
-hl("DiagnosticError",       { fg = p.red })
-hl("DiagnosticWarn",        { fg = p.orange })
-hl("DiagnosticInfo",        { fg = p.blue })
-hl("DiagnosticHint",        { fg = p.cyan })
-
-hl("DiagnosticUnderlineError", { underline = true, sp = p.red })
-hl("DiagnosticUnderlineWarn",  { underline = true, sp = p.orange })
-hl("DiagnosticUnderlineInfo",  { underline = true, sp = p.blue })
-hl("DiagnosticUnderlineHint",  { underline = true, sp = p.cyan })
-
-hl("LspReferenceText",      { bg = p.bg_light })
-hl("LspReferenceRead",      { bg = p.bg_light })
-hl("LspReferenceWrite",     { bg = p.bg_light })
-
--------------------------------------------------------------------------------
--- Plugin Support (Indent Blankline, Gitsigns, Telescope, NvimTree)
--------------------------------------------------------------------------------
--- Gitsigns
-hl("GitSignsAdd",           { fg = p.green })
-hl("GitSignsChange",        { fg = p.yellow })
-hl("GitSignsDelete",        { fg = p.red })
-
-hl("DiffAdd",               { bg = p.diff_add })
-hl("DiffChange",            { bg = p.diff_change })
-hl("DiffDelete",            { bg = p.diff_delete })
-hl("DiffText",              { bg = p.bg_subtle, bold = true })
-
--- Indent Blankline (ibl)
-hl("IblIndent",             { fg = p.bg_subtle })
-hl("IblScope",              { fg = p.fg_dark })
-
--- Telescope
-hl("TelescopeBorder",       { fg = p.bg_subtle, bg = p.bg_dark })
-hl("TelescopeNormal",       { fg = p.fg, bg = p.bg_dark })
-hl("TelescopeSelection",    { bg = p.bg_light, bold = true })
-hl("TelescopeMatching",     { fg = p.yellow, bold = true })
-hl("TelescopePromptPrefix", { fg = p.purple })
-
--- NvimTree
-hl("NvimTreeNormal",        { fg = p.fg_dim, bg = p.bg_dark })
-hl("NvimTreeFolderIcon",    { fg = p.blue })
-hl("NvimTreeRootFolder",    { fg = p.purple, bold = true })
+hl("DiffAdd",              { bg = p.diff_add })
+hl("DiffChange",           { bg = p.diff_change })
+hl("DiffDelete",           { bg = p.diff_delete })
+hl("DiffText",             { bg = p.bg_subtle, bold = true })
